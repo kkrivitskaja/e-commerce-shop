@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 
-// import './ImageBlock.module.css';
+import './ImageSlider.css';
 
-const images = [
+/**ImageSlider is an image slider with zoom effect on PDP
+    props example
+    productImages= [
     'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087',
     'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_1_720x.jpg?v=1612816087',
     'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_3_720x.jpg?v=1612816087',
     'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_5_720x.jpg?v=1612816087',
     'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_4_720x.jpg?v=1612816087',
 ];
-
-/**ImageSlider is an image slider with zoom effect on PDP
- * props:
- * productImages
- * productName
+    productName
  */
-class ImageBlock extends Component {
+class ImageSlider extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            img: images[0],
+            img: this.props.productImages[0],
         };
         this.imageRef = React.createRef();
         this.imageRef.current = [];
@@ -33,7 +31,7 @@ class ImageBlock extends Component {
             img: image,
         });
         this.imageRef.current[i].classList.add('slider-gallery__img-wrap-active');
-        for (let j = 0; j < images.length; j++) {
+        for (let j = 0; j < this.props.productImages.length; j++) {
             if (i !== j) {
                 this.imageRef.current[j].classList.remove('slider-gallery__img-wrap-active');
             }
@@ -47,10 +45,11 @@ class ImageBlock extends Component {
     }
 
     render() {
+        const images = this.props.productImages;
         return (
             <div className="slider">
                 <div className="slider-gallery">
-                    {images.map((image, i) => (
+                    {this.props.productImages.map((image, i) => (
                         <div
                             className={
                                 i === 0
@@ -61,8 +60,12 @@ class ImageBlock extends Component {
                             onMouseOver={() => this.hoverHandler(image, i)}
                             ref={this.addRefs}
                         >
-                            {/* add product name to props for img alt attribute*/}
-                            <img className="slider-gallery__img" src={image} alt="" />
+                          
+                            <img
+                                className="slider-gallery__img"
+                                src={image}
+                                alt={this.props.productName}
+                            />
                         </div>
                     ))}
                 </div>
@@ -75,12 +78,12 @@ class ImageBlock extends Component {
                             },
                             largeImage: {
                                 src: this.state.img,
-                                width: 1200,
-                                height: 1800,
+                                width: 500,
+                                height: 750,
                             },
                             enlargedImageContainerDimensions: {
-                                width: '150%',
-                                height: '150%',
+                                width: '50%',
+                                height: '50%',
                             },
                         }}
                     />
@@ -89,4 +92,4 @@ class ImageBlock extends Component {
         );
     }
 }
-export default ImageBlock;
+export default ImageSlider;

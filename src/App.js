@@ -1,12 +1,14 @@
-import { Component } from 'react'
+import { Component } from 'react';
 
-import ImageBlock from "./components/ImageBlock/ImageBlock"
+import Product from './Pages/Product';
 
 class App extends Component {
     render() {
-        return (<><h1>Store APP</h1>
-            <ImageBlock/>
-        </> );
+        return (
+            <>
+                <Product />
+            </>
+        );
     }
 }
 
