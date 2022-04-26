@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactImageMagnify from 'react-image-magnify';
 
 // import './ImageBlock.module.css';
 
@@ -66,7 +67,23 @@ class ImageBlock extends Component {
                     ))}
                 </div>
                 <div className="slider-dynamic">
-                    
+                    <ReactImageMagnify
+                        {...{
+                            smallImage: {
+                                isFluidWidth: true,
+                                src: this.state.img,
+                            },
+                            largeImage: {
+                                src: this.state.img,
+                                width: 1200,
+                                height: 1800,
+                            },
+                            enlargedImageContainerDimensions: {
+                                width: '150%',
+                                height: '150%',
+                            },
+                        }}
+                    />
                 </div>
             </div>
         );
