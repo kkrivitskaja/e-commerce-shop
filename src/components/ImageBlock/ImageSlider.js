@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
+import PropTypes from 'prop-types';
 
 import './ImageSlider.css';
 
@@ -90,4 +91,9 @@ class ImageSlider extends Component {
         );
     }
 }
+
+ImageSlider.propTypes = {
+    productImages: PropTypes.arrayOf(PropTypes.string),
+    productName: PropTypes.string,
+};
 export default ImageSlider;
