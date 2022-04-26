@@ -45,7 +45,6 @@ class ImageSlider extends Component {
     }
 
     render() {
-        const images = this.props.productImages;
         return (
             <div className="slider">
                 <div className="slider-gallery">
@@ -53,14 +52,13 @@ class ImageSlider extends Component {
                         <div
                             className={
                                 i === 0
-                                    ? 'slider-gallery__img-wrap-active'
+                                    ? 'slider-gallery__img-wrap-active slider-gallery__img-wrap'
                                     : 'slider-gallery__img-wrap'
                             }
                             key={i}
                             onMouseOver={() => this.hoverHandler(image, i)}
                             ref={this.addRefs}
                         >
-                          
                             <img
                                 className="slider-gallery__img"
                                 src={image}
@@ -78,12 +76,12 @@ class ImageSlider extends Component {
                             },
                             largeImage: {
                                 src: this.state.img,
-                                width: 500,
-                                height: 750,
+                                width: 1800,
+                                height: 1800,
                             },
                             enlargedImageContainerDimensions: {
-                                width: '50%',
-                                height: '50%',
+                                width: '100%',
+                                height: '100%',
                             },
                         }}
                     />
