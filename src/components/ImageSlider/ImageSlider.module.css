@@ -1,0 +1,33 @@
+.slider {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 80px auto;
+    column-gap: 2.5rem;
+}
+
+.slider-gallery {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.5rem;
+}
+
+.slider-gallery__img-wrap {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.slider-gallery__img-wrap-active {
+    border: 2px solid rgb(231, 118, 0);
+}
+
+.slider-gallery__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.slider-dynamic__image {
+    width: 100%;
+    object-fit: contain;
+}
