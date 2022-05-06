@@ -14,7 +14,6 @@
 .slider-gallery__img-wrap {
     width: 80px;
     height: 80px;
-    border: 1px solid rgb(238, 238, 238);
     cursor: pointer;
 }
 
@@ -26,11 +25,6 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-}
-
-.slider-dynamic {
-    /* width: 83%;
-    height: 510px; */
 }
 
 .slider-dynamic__image {
