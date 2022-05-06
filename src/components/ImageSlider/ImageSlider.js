@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 import PropTypes from 'prop-types';
 
-import './ImageSlider.css';
+import styles from './ImageSlider.module.css';
 
 /**ImageSlider is an image slider with zoom effect on PDP
     props example
@@ -31,10 +31,12 @@ class ImageSlider extends Component {
         this.setState({
             img: image,
         });
-        this.imageRef.current[i].classList.add('slider-gallery__img-wrap-active');
+        this.imageRef.current[i].classList.add(styles['slider-gallery__img-wrap-active']);
         for (let j = 0; j < this.props.productImages.length; j++) {
             if (i !== j) {
-                this.imageRef.current[j].classList.remove('slider-gallery__img-wrap-active');
+                this.imageRef.current[j].classList.remove(
+                    styles['slider-gallery__img-wrap-active']
+                );
             }
         }
     }
@@ -47,8 +49,8 @@ class ImageSlider extends Component {
 
     render() {
         return (
-            <div className="slider">
-                <div className="slider-gallery">
+            <div className={styles['slider']}>
+                <div className={styles['slider-gallery']}>
                     {this.props.productImages.map((image, i) => (
                         <div
                             className={
@@ -61,14 +63,14 @@ class ImageSlider extends Component {
                             ref={this.addRefs}
                         >
                             <img
-                                className="slider-gallery__img"
+                                className={styles['slider-gallery__img']}
                                 src={image}
                                 alt={this.props.productName}
                             />
                         </div>
                     ))}
                 </div>
-                <div className="slider-dynamic">
+                <div className={styles['slider-dynamic']}>
                     <ReactImageMagnify
                         {...{
                             smallImage: {

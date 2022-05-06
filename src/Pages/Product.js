@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import ImageSlider from '../components/ImageBlock/ImageSlider';
+import ImageSlider from '../components/ImageSlider/ImageSlider';
 
 import './Product.css';
 
