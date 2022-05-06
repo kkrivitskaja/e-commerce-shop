@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import styles from './ImageSlider.module.css';
 
@@ -53,11 +54,9 @@ class ImageSlider extends Component {
                 <div className={styles['slider-gallery']}>
                     {this.props.productImages.map((image, i) => (
                         <div
-                            className={
-                                i === 0
-                                    ? 'slider-gallery__img-wrap-active slider-gallery__img-wrap'
-                                    : 'slider-gallery__img-wrap'
-                            }
+                            className={classnames(styles['slider-gallery__img-wrap'], {
+                                [styles['slider-gallery__img-wrap-active']]: i === 0,
+                            })}
                             key={i}
                             onMouseOver={() => this.hoverHandler(image, i)}
                             ref={this.addRefs}
