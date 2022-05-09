@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway&family=Roboto+Condensed:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100&family=Source+Sans+Pro&display=swap');
+
 .product-info {
     width: 100%;
     display: flex;
@@ -25,13 +27,12 @@
     margin-bottom: 16px;
 }
 
-
 .product-info__size-wrapper {
     display: flex;
     flex-direction: column;
 }
 
-.product-info__size-wrapper :first-child {
+.product-info__size {
     margin-bottom: 10px;
 }
 
@@ -42,6 +43,22 @@
     font-weight: 700;
     font-size: 18px;
     line-height: 18px;
+}
+
+.product-info__btn-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 63px);
+    column-gap: 12px
+}
+
+.product-info__btn {
+    border: 1px solid rgb(28, 30, 33);
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    padding: 14px 0;
 }
 
 .product-info__purchase {
