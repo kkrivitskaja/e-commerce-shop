@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import styles from './BaseButton.module.scss';
+
 class BaseButton extends Component {
     render() {
         const {
