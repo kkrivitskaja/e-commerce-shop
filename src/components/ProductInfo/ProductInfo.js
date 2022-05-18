@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import DOMPurify from 'dompurify';
 
 import BaseButton from '../BaseButton/BaseButton';
 import './ProductInfo.css';
@@ -82,7 +83,7 @@ category= "clothes",
 
 class ProductInfo extends Component {
     render() {
-        const { name, inStock=true, description, category, brand, price } = this.props;
+        const { name, inStock = true, description, category, brand, price } = this.props;
         return (
             <div className="product-info">
                 <div className="product-info__name-wrapper">
@@ -104,12 +105,14 @@ class ProductInfo extends Component {
                         {price.toFixed(2)}
                     </span>
                 </div>
-                <BaseButton>{inStock ? 'ADD TO CART' : 'OUT OF STOCK'}</BaseButton>
-                <div className="product-info__description-wrapper">
-                    <p className="product-info__description">
-                        {description}
-                    </p>
-                </div>
+                <BaseButton full disabled={!inStock}>
+                    {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
+                </BaseButton>
+                <div
+                    className="product-info__description"
+                    /**used a sanitizer DOMPurify.sanitize() to prevent XSS*/
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
+                />
             </div>
         );
     }
