@@ -21,7 +21,7 @@ class NavBar extends Component {
                                 })
                             }
                         >
-                            {category.name.toUpperCase()}
+                            {category.name}
                         </NavLink>
                     ))}
                 </div>

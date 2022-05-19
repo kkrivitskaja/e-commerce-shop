@@ -2,17 +2,17 @@
 
 .nav {
     display: flex;
-    margin: 20px;
     width: 100%;
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 400;
-    font-size: 1 rem;
+    font-size: 1rem;
     line-height: 120%;
     column-gap: 2rem;
 }
 
 .nav-link {
+    text-transform: uppercase;
     text-decoration: none;
     color: rgba(29, 31, 34, 1);
 }
