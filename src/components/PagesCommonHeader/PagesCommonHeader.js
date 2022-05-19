@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import NavBar from '../NavBar/NavBar';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
 
 class PagesCommonHeader extends Component {
     render() {
@@ -11,6 +12,7 @@ class PagesCommonHeader extends Component {
             <>
                 <header>
                     <NavBar category={categories} />
+                    <Logo/>
                 </header>
                 <main>
                     <Outlet />
