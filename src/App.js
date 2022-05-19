@@ -6,6 +6,7 @@ import { graphql } from 'react-apollo';
 import ProductList from './pages/ProductList/ProductList';
 import Cart from './pages/Cart/Cart';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
+import PagesCommonHeader from './components/PagesCommonHeader/PagesCommonHeader';
 
 const GET_CATEGORY = gql`
     {
@@ -25,15 +26,17 @@ class App extends Component {
                 {categories && !loading && !error && (
                     <div className="App">
                         <Routes>
-                            {categories.map((category) => (
-                                <Route
-                                    path={`/${category.name}`}
-                                    key={category.name}
-                                    element={<ProductList name={category.name} />}
-                                />
-                            ))}
-                            <Route path={'/cart'} element={<Cart />} />
-                            <Route path="*" element={<PageNotFound />} />
+                            <Route path="/" element={<PagesCommonHeader category={categories} />}>
+                                {categories.map((category) => (
+                                    <Route
+                                        path={`/${category.name}`}
+                                        key={category.name}
+                                        element={<ProductList name={category.name} />}
+                                    />
+                                ))}
+                                <Route path={'/cart'} element={<Cart />} />
+                                <Route path="*" element={<PageNotFound />} />
+                            </Route>
                         </Routes>
                     </div>
                 )}
