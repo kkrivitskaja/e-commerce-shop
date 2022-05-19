@@ -33,7 +33,7 @@ ProductCard.propTypes = {
     name: PropTypes.string,
     inStock: PropTypes.bool,
     brand: PropTypes.string,
-    prices: PropTypes.array,
+    prices: PropTypes.arrayOf(PropTypes.object),
     id: PropTypes.string,
     gallery: PropTypes.arrayOf(PropTypes.string),
 };
