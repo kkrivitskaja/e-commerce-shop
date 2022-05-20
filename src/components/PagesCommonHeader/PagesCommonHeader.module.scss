@@ -1,0 +1,26 @@
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 80px;
+    padding: 23px 100px 0 100px;
+
+    &-logo {
+        display: flex;
+        justify-content: center;
+    }
+
+    &-actions {
+        display: flex;
+        gap: 22px;
+        justify-content: end;
+        align-items: baseline;
+
+        &>* {
+            border: none;
+            font: inherit;
+            color: inherit;
+            background-color: transparent;
+            cursor: pointer;
+        }
+    }
+}
