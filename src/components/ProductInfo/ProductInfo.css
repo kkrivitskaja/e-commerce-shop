@@ -27,16 +27,6 @@
     margin-bottom: 16px;
 }
 
-.product-info__size-wrapper {
-    display: flex;
-    flex-direction: column;
-}
-
-.product-info__size {
-    margin-bottom: 10px;
-}
-
-.product-info__size,
 .product-info__price {
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
