@@ -1,0 +1,31 @@
+.attributes {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.attribute{
+    display: flex;
+    flex-direction: column;
+    gap:10px
+}
+
+.text {
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    color: rgb(29, 31, 34);
+}
+
+.container {
+    display: flex;
+    gap: 12px
+}
+
+.color-btn{
+    width: 63px;
+    height: 45px;
+    border: 2px solid rgb(225, 218, 219);
+}
