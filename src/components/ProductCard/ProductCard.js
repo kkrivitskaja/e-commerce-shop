@@ -4,17 +4,17 @@ import classnames from 'classnames';
 
 import { ReactComponent as BuyButton } from '../../assets/buy-icon.svg';
 
-import styles from './ProductCard.module.css';
+import styles from './ProductCard.module.scss';
 
 /** ProductInfo is a component on the PLP showing product details such as photo, brand and product name, price*/
 class ProductCard extends Component {
     render() {
-        const { name, inStock, brand, prices, id, disabled, gallery } = this.props;
+        const { name, inStock, brand, prices, gallery } = this.props;
         return (
             <>
                 <div
                     className={classnames(styles['card'], {
-                        [styles['card--disabled']]: disabled,
+                        [styles['card--disabled']]: !inStock,
                     })}
                 >
                     <div className={styles['card-image-wrapper']}>
@@ -48,7 +48,6 @@ ProductCard.propTypes = {
     inStock: PropTypes.bool,
     brand: PropTypes.string,
     prices: PropTypes.arrayOf(PropTypes.object),
-    id: PropTypes.string,
     gallery: PropTypes.arrayOf(PropTypes.string),
 };
 
