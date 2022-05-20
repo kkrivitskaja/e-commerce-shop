@@ -1,0 +1,36 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 1rem;
+    width: 100%;
+    width: 386px;
+    height: 440px;
+    background-color: rgb(255, 255, 255);
+}
+
+.card:hover {
+    filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+}
+
+.card-image-wrapper {
+    width: 355px;
+    height: 330px;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column
+}
+
+.card-info__name,
+.card-info__price {
+    display: flex;
+    width: 100%;
+}
