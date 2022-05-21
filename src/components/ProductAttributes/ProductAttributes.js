@@ -27,25 +27,19 @@ class ProductAttributes extends Component {
                             style={
                                 attribute.type === 'swatch'
                                     ? {
-                                          backgroundColor: `${item.value}`,
-                                          //   borderColor:
-                                          //       `${item.value}` !== '#FFFFFF'
-                                          //           ? null
-                                          //           : '#000',
-                                      }
+                                        backgroundColor: `${item.value}`,
+                                        width:'45px'
+                                    }
                                     : null
-                                // {
-                                //       backgroundColor: '#FFFFFF',
-                                //   }
                             }
                             onClick={() => {
                                 this.addedAttribute(item);
                             }}
                             className={classnames(styles['attribute-btn'], {
-                                [styles['chosen']]:
+                                [styles['attribute-btn--chosen']]:
                                     this.props.selectedAttribute?.item.id === item.id &&
                                     attribute.type !== 'swatch',
-                                [styles['chosen--swatch']]:
+                                [styles['attribute-btn--chosen-swatch']]:
                                     this.props.selectedAttribute?.item.id === item.id &&
                                     attribute.type === 'swatch',
                             })}

@@ -4,35 +4,38 @@
     gap: 0.625rem;
 
     &-text {
-    font-family: 'Roboto Condensed';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 18px;
-    color: rgb(29, 31, 34);
-}
-
-&-btn-wrapper {
-    display: flex;
-    gap: 12px
-}
-
-&-btn {
-    width: 63px;
-    height: 45px;
-    cursor: pointer;
-    border: 2px solid rgb(225, 217, 217);
-    color: inherit;
-  background-color: transparent;
+        font-family: 'Roboto Condensed';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 18px;
+        color: rgb(29, 31, 34);
     }
-}
 
-.chosen{
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    border: 2px solid rgb(0, 0, 0);
-   }
+    &-btn-wrapper {
+        display: flex;
+        gap: 12px
+    }
 
-.chosen--swatch{
-    border: 3px solid rgb(164, 46, 46);
+    &-btn {
+        width: 63px;
+        height: 45px;
+        cursor: pointer;
+        border: 1px solid rgb(225, 217, 217);
+        color: inherit;
+        background-color: transparent;
+        user-select: none;
+
+        &--chosen {
+            background-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            border: 1px solid rgb(0, 0, 0);
+        }
+
+        &--chosen-swatch {
+            border: 2px solid rgb(94, 206, 123);
+            padding: 2px;
+            background-clip: content-box;
+        }
+    }
 }
