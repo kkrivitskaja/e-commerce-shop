@@ -1,16 +1,9 @@
-.attributes {
+.attribute {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-}
+    gap: 0.625rem;
 
-.attribute{
-    display: flex;
-    flex-direction: column;
-    gap:10px
-}
-
-.text {
+    &-text {
     font-family: 'Roboto Condensed';
     font-style: normal;
     font-weight: 700;
@@ -19,13 +12,13 @@
     color: rgb(29, 31, 34);
 }
 
-.container {
+&-btn-wrapper {
     display: flex;
     gap: 12px
 }
 
-.color-btn{
+&-btn {
     width: 63px;
     height: 45px;
-    border: 2px solid rgb(225, 218, 219);
+    }
 }
