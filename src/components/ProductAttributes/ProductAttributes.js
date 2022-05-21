@@ -1,34 +1,54 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-import styles from'./ProductAttributes.module.scss';
+import styles from './ProductAttributes.module.scss';
 
 class ProductAttributes extends Component {
+    addedAttribute = (attribute) => {
+        const chosenAttribute = {
+            id: this.props.attribute.id,
+            item: attribute,
+            name: this.props.attribute.name,
+            type: this.props.attribute.type,
+        };
+        this.props.setSelectedAttribute(chosenAttribute);
+    };
+
     render() {
         const { attribute } = this.props;
-
         return (
-            <div className={styles["attribute"]}>
-                {console.log(attribute)}
-                <div className={styles["attribute-text"]}>{attribute.name}</div>
-                <div className={styles["attribute-btn-wrapper"]}>
-                    {attribute.items.map((item) => (
+            <div className={styles['attribute']}>
+                <div className={styles['attribute-text']}>{attribute.name}</div>
+                <div className={styles['attribute-btn-wrapper']}>
+                    {attribute?.items?.map((item) => (
                         <button
                             key={item.id}
                             style={
                                 attribute.type === 'swatch'
                                     ? {
-                                        backgroundColor: `${item.value}`,
-                                        borderColor:
-                                            `${item.value}` !== '#FFFFFF'
-                                                ? 'transparent'
-                                                : '#000',
-                                    }
-                                    : {
-                                        backgroundColor: '#FFFFFF',
-                                    }
+                                          backgroundColor: `${item.value}`,
+                                          //   borderColor:
+                                          //       `${item.value}` !== '#FFFFFF'
+                                          //           ? null
+                                          //           : '#000',
+                                      }
+                                    : null
+                                // {
+                                //       backgroundColor: '#FFFFFF',
+                                //   }
                             }
-                            className={styles["attribute-btn"]}
+                            onClick={() => {
+                                this.addedAttribute(item);
+                            }}
+                            className={classnames(styles['attribute-btn'], {
+                                [styles['chosen']]:
+                                    this.props.selectedAttribute?.item.id === item.id &&
+                                    attribute.type !== 'swatch',
+                                [styles['chosen--swatch']]:
+                                    this.props.selectedAttribute?.item.id === item.id &&
+                                    attribute.type === 'swatch',
+                            })}
                         >
                             {attribute.type !== 'swatch' ? item.displayValue : null}
                         </button>
