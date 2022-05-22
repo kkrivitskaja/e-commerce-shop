@@ -4,7 +4,8 @@ import DOMPurify from 'dompurify';
 
 import BaseButton from '../BaseButton/BaseButton';
 import ProductAttributes from '../ProductAttributes/ProductAttributes';
-import './ProductInfo.css';
+
+import styles from './ProductInfo.module.scss';
 
 /** ProductInfo is a component showing product details such as brand and product name, available sizes, price, description
  */
@@ -31,10 +32,17 @@ class ProductInfo extends Component {
             attributes,
         } = this.props.data.data.product;
         return (
-            <div className="product-info">
-                <div className="product-info__name-wrapper">
-                    <span className="product-info__name single-card__name--semibold">{brand}</span>
-                    <span className="product-info__name">{name}</span>
+            <div className={styles['product-info']}>
+                <div className={styles['product-info__name-wrapper']}>
+                    <span
+                        className={[
+                            `${styles['product-info__name']},
+                            ${styles['product-info__name--semibold']}`,
+                        ]}
+                    >
+                        {brand}
+                    </span>
+                    <span className={styles['product-info__name']}>{name}</span>
                 </div>
                 {attributes?.map((attribute) => (
                     <ProductAttributes
@@ -44,9 +52,11 @@ class ProductInfo extends Component {
                         setSelectedAttribute={this.setSelectedAttribute}
                     />
                 ))}
-                <div className="product-info__purchase">
-                    <span className="product-info__price">PRICE:</span>
-                    <span className="product-info__price single-card__price--value">
+                <div className={styles['product-info__price-wrapper']}>
+                    <span className={styles['product-info__price']}>PRICE:</span>
+                    <span
+                        className={`${styles['product-info__price']} ${styles['product-info__price--value']}`}
+                    >
                         {prices[0].currency.symbol}
                         {prices[0].amount}
                     </span>
@@ -55,7 +65,7 @@ class ProductInfo extends Component {
                     {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
                 </BaseButton>
                 <div
-                    className="product-info__description"
+                    className={styles['product-info__description']}
                     /**used a sanitizer DOMPurify.sanitize() to prevent XSS*/
                     dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
                 />
