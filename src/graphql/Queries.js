@@ -11,6 +11,7 @@ export const GET_CATEGORY = gql`
 export const GET_PRODUCTS_BY_CATEGORY = gql`
     query getProducts($title: String!) {
         category(input: { title: $title }) {
+            name
             products {
                 name
                 id
