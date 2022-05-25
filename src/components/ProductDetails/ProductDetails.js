@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import DOMPurify from 'dompurify';
+import PropTypes from 'prop-types';
+
+import styles from "./ProductDetails.module.scss";
+
+import BaseButton from '../BaseButton/BaseButton';
 
 /**ProductDetails is a component showing product details such as brand and product name, available attributes, price, description
  */
@@ -28,6 +33,9 @@ class ProductDetails extends Component {
                         {price.toFixed(2)}
                     </span>
                 </div>
+                <BaseButton full disabled={!inStock}>
+                    {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
+                </BaseButton>
                 <div
                     className="product-info__description"
                     /**used a sanitizer DOMPurify.sanitize() to prevent XSS*/
@@ -37,5 +45,14 @@ class ProductDetails extends Component {
         );
     }
 }
+
+ProductDetails.propTypes = {
+    name: PropTypes.string,
+    inStock: PropTypes.bool,
+    description: PropTypes.string,
+    category: PropTypes.string,
+    brand: PropTypes.string,
+    price: PropTypes.number,
+};
 
 export default ProductDetails;
