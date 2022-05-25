@@ -11,6 +11,17 @@ import styles from './ProductDetails.module.scss';
  */
 
 class ProductDetails extends Component {
+    state = {
+        selectedAttribute: new Map(),
+    };
+
+    setSelectedAttribute = (selectedAttribute) => {
+        this.setState((prevState) => {
+            const newSelectedAttribute = new Map(prevState.selectedAttribute);
+            newSelectedAttribute.set(selectedAttribute.id, selectedAttribute);
+            return { ...prevState, selectedAttribute: newSelectedAttribute };
+        });
+    };
     render() {
         const { name, inStock, description, brand, prices, attributes } = this.props;
         return (
@@ -19,7 +30,14 @@ class ProductDetails extends Component {
                     <span className="product-info__name single-card__name--semibold">{brand}</span>
                     <span className="product-info__name">{name}</span>
                 </div>
-                <ProductAttributes attributes={attributes} />
+                {attributes?.map((attribute) => (
+                    <ProductAttributes
+                        key={attribute.id}
+                        attribute={attribute}
+                        selectedAttribute={this.state.selectedAttribute?.get(attribute.id)}
+                        setSelectedAttribute={this.setSelectedAttribute}
+                    />
+                ))}
                 <div className="product-info__purchase">
                     <span className="product-info__price">PRICE:</span>
                     <span className="product-info__price single-card__price--value">
