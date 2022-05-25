@@ -1,0 +1,24 @@
+.attribute {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+
+    &-text {
+        font-family: 'Roboto Condensed';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 18px;
+        color: rgb(29, 31, 34);
+    }
+
+    &-btn-wrapper {
+        display: flex;
+        gap: 12px
+    }
+
+    &-btn {
+        width: 63px;
+        height: 45px;
+    }
+}
