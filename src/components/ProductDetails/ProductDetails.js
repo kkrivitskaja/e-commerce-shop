@@ -25,10 +25,17 @@ class ProductDetails extends Component {
     render() {
         const { name, inStock, description, brand, prices, attributes } = this.props;
         return (
-            <div className="product-info">
-                <div className="product-info__name-wrapper">
-                    <span className="product-info__name single-card__name--semibold">{brand}</span>
-                    <span className="product-info__name">{name}</span>
+            <div className={styles['product-info']}>
+                <div className={styles['product-info__name-wrapper']}>
+                    <span
+                        className={[
+                            `${styles['product-info__name']},
+                            ${styles['product-info__name--semibold']}`,
+                        ]}
+                    >
+                        {brand}
+                    </span>
+                    <span className={styles['product-info__name']}>{name}</span>
                 </div>
                 {attributes?.map((attribute) => (
                     <ProductAttributes
@@ -38,9 +45,11 @@ class ProductDetails extends Component {
                         setSelectedAttribute={this.setSelectedAttribute}
                     />
                 ))}
-                <div className="product-info__purchase">
-                    <span className="product-info__price">PRICE:</span>
-                    <span className="product-info__price single-card__price--value">
+                <div className={styles['product-info__price-wrapper']}>
+                    <span className={styles['product-info__price']}>PRICE:</span>
+                    <span
+                        className={`${styles['product-info__price']} ${styles['product-info__price--value']}`}
+                    >
                         {prices[0].currency.symbol}
                         {prices[0].amount}
                     </span>
@@ -49,7 +58,7 @@ class ProductDetails extends Component {
                     {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
                 </BaseButton>
                 <div
-                    className="product-info__description"
+                    className={styles['product-info__description']}
                     /**used a sanitizer DOMPurify.sanitize() to prevent XSS*/
                     dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
                 />
