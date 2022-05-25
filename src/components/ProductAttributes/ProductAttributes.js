@@ -19,7 +19,6 @@ class ProductAttributes extends Component {
 
         return (
             <div className={styles['attribute']}>
-                {console.log(attribute)}
                 <div className={styles['attribute-text']}>{attribute.name}</div>
                 <div className={styles['attribute-btn-wrapper']}>
                     {attribute.items.map((item) => (
@@ -29,6 +28,7 @@ class ProductAttributes extends Component {
                                 attribute.type === 'swatch'
                                     ? {
                                           backgroundColor: `${item.value}`,
+                                          width: '45px',
                                       }
                                     : null
                             }
@@ -36,10 +36,10 @@ class ProductAttributes extends Component {
                                 this.addedAttribute(item);
                             }}
                             className={classnames(styles['attribute-btn'], {
-                                [styles['chosen']]:
+                                [styles['attribute-btn--chosen']]:
                                     this.props.selectedAttribute?.item.id === item.id &&
                                     attribute.type !== 'swatch',
-                                [styles['chosen--swatch']]:
+                                [styles['attribute-btn--chosen-swatch']]:
                                     this.props.selectedAttribute?.item.id === item.id &&
                                     attribute.type === 'swatch',
                             })}
