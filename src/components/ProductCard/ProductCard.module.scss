@@ -6,7 +6,7 @@
     gap: 1.25rem;
     padding: 1rem;
     width: 100%;
-    width: 386px;
+    max-width: 386px;
     height: 440px;
     background-color: rgb(255, 255, 255);
     cursor: pointer;
@@ -20,7 +20,6 @@
     }
 
     &-image-wrapper {
-        width: 355px;
         height: 330px;
         position: relative;
     }

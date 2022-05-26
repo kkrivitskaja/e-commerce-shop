@@ -9,13 +9,14 @@ import styles from './ProductCard.module.scss';
 /** ProductInfo is a component on the PLP showing product details such as photo, brand and product name, price*/
 class ProductCard extends Component {
     render() {
-        const { name, inStock, brand, prices, gallery } = this.props;
+        const { name, inStock, brand, prices, gallery } = this.props.product;
         return (
             <>
                 <div
                     className={classnames(styles['card'], {
                         [styles['card--disabled']]: !inStock,
                     })}
+                    onClick={this.props.onClick}
                 >
                     <div className={styles['card-image-wrapper']}>
                         <img src={gallery[0]} alt={name} className={styles['card-image']} />
