@@ -7,26 +7,21 @@ import Cart from './pages/Cart/Cart';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import PagesCommonHeader from './components/PagesCommonHeader/PagesCommonHeader';
 import { GET_CATEGORY } from './graphql/Queries';
-
 class App extends Component {
     render() {
-        const { loading, error, categories } = this.props.data;
+        const { categories } = this.props.data;
         return (
             <>
-                {loading && !error && !categories && <div>LOADING!!!!</div>}
-                {!loading && error && !categories && <div>{error}</div>}
-                {categories && !loading && !error && (
-                    <div className="App">
-                        <Routes>
-                            <Route path="/" element={<PagesCommonHeader category={categories} />}>
-                                <Route path="/:categoryId" element={<ProductList />} />
-                                <Route path="/:categoryId/:productId" element={<ProductList />} />
-                                <Route path={'/cart'} element={<Cart />} />
-                                <Route path="*" element={<PageNotFound />} />
-                            </Route>
-                        </Routes>
-                    </div>
-                )}
+                <div className="App">
+                    <Routes>
+                        <Route path="/" element={<PagesCommonHeader category={categories} />}>
+                            <Route path="/:categoryId" element={<ProductList />} />
+                            <Route path="/:categoryId/:productId" element={<ProductList />} />
+                            <Route path={'/cart'} element={<Cart />} />
+                            <Route path="*" element={<PageNotFound />} />
+                        </Route>
+                    </Routes>
+                </div>
             </>
         );
     }

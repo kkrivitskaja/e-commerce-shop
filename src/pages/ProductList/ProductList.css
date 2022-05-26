@@ -8,7 +8,6 @@ body {
     flex-direction: column;
     width: 86.2%;
     margin: 80px auto 190px auto;
-    /* margin-top: 80px; */
     row-gap: 100px;
 }
 
@@ -18,7 +17,7 @@ body {
     font-weight: 400;
     font-size: 42px;
     line-height: 160%;
-     text-transform:uppercase;
+    text-transform: uppercase;
 }
 
 .grid {
@@ -27,7 +26,6 @@ body {
     gap: 100px 40px;
     background-color: #FFFFFF;
     justify-content: center;
-    /* border: 1px solid black; */
 }
 
 @media (max-width:576px) {
@@ -35,8 +33,12 @@ body {
         width: 100%;
     }
 
-    /* .grid {
-        gap: 100px 0;
-    } */
-    .title {margin: 0 auto;}
+    .grid {
+        gap: 0px 0px;
+        row-gap: 48px;
+    }
+
+    .title {
+        margin: 0 auto;
+    }
 }
