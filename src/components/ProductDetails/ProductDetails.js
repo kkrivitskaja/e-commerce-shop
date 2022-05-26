@@ -24,7 +24,7 @@ class ProductDetails extends Component {
     };
     render() {
         const { name, inStock, description, brand, prices, attributes } =
-            this.props.data.data.product;
+            this.props.product;
         return (
             <div className={styles['product-info']}>
                 <div className={styles['product-info__name-wrapper']}>
