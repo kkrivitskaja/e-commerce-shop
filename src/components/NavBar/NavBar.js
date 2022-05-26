@@ -13,7 +13,7 @@ class NavBar extends Component {
                 <div className={styles['nav']}>
                     {categories.map((category) => (
                         <NavLink
-                            to={`/categories/${category.name}`}
+                            to={`/${category.name}`}
                             key={category.name}
                             className={({ isActive }) =>
                                 classnames(styles['nav-link'], {

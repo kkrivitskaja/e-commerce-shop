@@ -1,20 +1,12 @@
 import { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
 
 import ProductList from './pages/ProductList/ProductList';
 import Cart from './pages/Cart/Cart';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import PagesCommonHeader from './components/PagesCommonHeader/PagesCommonHeader';
-
-const GET_CATEGORY = gql`
-    {
-        categories {
-            name
-        }
-    }
-`;
+import { GET_CATEGORY } from './graphql/Queries';
 
 class App extends Component {
     render() {
@@ -27,13 +19,8 @@ class App extends Component {
                     <div className="App">
                         <Routes>
                             <Route path="/" element={<PagesCommonHeader category={categories} />}>
-                                {categories.map((category) => (
-                                    <Route
-                                        path={`/${category.name}`}
-                                        key={category.name}
-                                        element={<ProductList name={category.name} />}
-                                    />
-                                ))}
+                                <Route path="/:categoryId" element={<ProductList />} />
+                                <Route path="/:categoryId/:productId" element={<ProductList />} />
                                 <Route path={'/cart'} element={<Cart />} />
                                 <Route path="*" element={<PageNotFound />} />
                             </Route>
