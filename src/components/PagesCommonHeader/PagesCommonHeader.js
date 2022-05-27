@@ -44,9 +44,7 @@ class PagesCommonHeader extends Component {
                             <Logo />
                         </div>
                         <div className={styles['header-actions']}>
-                            <button className="header-actions__btn">
-                                <CurrencySelector currencies={currencies} />
-                            </button>
+                            <CurrencySelector currencies={currencies} />
                             <button className="header-actions__btn">
                                 <Cart />
                             </button>
