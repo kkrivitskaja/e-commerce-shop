@@ -3,6 +3,11 @@
     grid-template-columns: 1fr 1fr 1fr;
     height: 80px;
     padding: 23px 100px 0 100px;
+    position: fixed;
+    top: 0;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    z-index: 10;
 
     &-logo {
         display: flex;

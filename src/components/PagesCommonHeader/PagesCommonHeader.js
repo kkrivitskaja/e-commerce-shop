@@ -5,24 +5,25 @@ import { withApollo } from 'react-apollo';
 
 import NavBar from '../NavBar/NavBar';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
-import { ReactComponent as Currency } from '../../assets/currency-icon.svg';
 import { ReactComponent as Cart } from '../../assets/cart-icon.svg';
-import { GET_CATEGORY } from '../../graphql/Queries';
+import { GET_CATEGORY_AND_CURRENCY } from '../../graphql/Queries';
+import CurrencySelector from '../CurrencySelector/CurrencySelector';
 
 import styles from './PagesCommonHeader.module.scss';
-
 class PagesCommonHeader extends Component {
     state = {
         categories: null,
+        currencies: null,
         loading: true,
     };
 
     getCategories = async () => {
         const { loading, error, data } = await this.props.client.query({
-            query: GET_CATEGORY,
+            query: GET_CATEGORY_AND_CURRENCY,
         });
         this.setState({
             categories: data?.categories,
+            currencies: data?.currencies,
             loading,
             error,
         });
@@ -33,10 +34,10 @@ class PagesCommonHeader extends Component {
     }
 
     render() {
-        const { categories } = this.state;
+        const { categories, currencies } = this.state;
         return (
             <>
-                {categories && (
+                {categories && currencies && (
                     <header className={styles['header']}>
                         <NavBar category={categories} className="nav" />
                         <div className={styles['header-logo']}>
@@ -44,7 +45,7 @@ class PagesCommonHeader extends Component {
                         </div>
                         <div className={styles['header-actions']}>
                             <button className="header-actions__btn">
-                                <Currency />
+                                <CurrencySelector currencies={currencies} />
                             </button>
                             <button className="header-actions__btn">
                                 <Cart />
