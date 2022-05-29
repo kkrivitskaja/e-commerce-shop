@@ -4,8 +4,9 @@
     column-gap: 10px;
     align-items: baseline;
     position: relative;
-    cursor: pointer;
     color: rgb(29, 31, 34);
+    cursor: pointer;
+    user-select: none;
 }
 
 .currencies-list {
@@ -35,14 +36,4 @@
     &:hover {
         background-color: rgb(94, 206, 123);
     }
-}
-
-.overlay{
-   
-    position: fixed;
-    top: 0;
-    left:0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 10;
 }

@@ -11,8 +11,16 @@ class CurrencySelector extends Component {
     state = {
         showModal: false,
     };
+
     toggle = () => {
         this.setState(({ showModal }) => ({ showModal: !showModal }));
+    };
+
+    currencyHandler = (newCurrency) => {
+        const newState = {
+            currentCurrency: newCurrency,
+        };
+        console.log(newCurrency);
     };
 
     render() {
@@ -31,6 +39,9 @@ class CurrencySelector extends Component {
                         <div className={styles['currencies-list']}>
                             {currencies.map((currency) => (
                                 <button
+                                    onClick={() => {
+                                        this.currencyHandler(currency);
+                                    }}
                                     key={currency.label}
                                     className={styles['currencies-list__btn']}
                                 >
