@@ -33,7 +33,8 @@
     font-size: 18px;
     line-height: 160%;
 
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: rgb(94, 206, 123);
     }
 }

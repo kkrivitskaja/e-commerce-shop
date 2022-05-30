@@ -3,6 +3,24 @@ import ReactDOM from 'react-dom';
 
 import styles from './Modal.module.scss';
 class Modal extends Component {
+    onKeydown = ({ key }) => {
+        switch (key) {
+            case 'Escape':
+                this.props.onClose();
+                break;
+            default:
+                break;
+        }
+    };
+
+    componentDidMount() {
+        document.addEventListener('keydown', this.onKeydown);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.onKeydown);
+    }
+
     render() {
         return ReactDOM.createPortal(
             <>
