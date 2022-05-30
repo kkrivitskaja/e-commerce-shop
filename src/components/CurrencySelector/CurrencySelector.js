@@ -10,27 +10,38 @@ import styles from './CurrencySelector.module.scss';
 class CurrencySelector extends Component {
     state = {
         showModal: false,
+        currentCurrency: {
+            label: 'USD',
+            symbol: '$',
+        },
     };
 
     toggle = () => {
         this.setState(({ showModal }) => ({ showModal: !showModal }));
     };
 
-    currencyHandler = (newCurrency) => {
-        const newState = {
-            currentCurrency: newCurrency,
-        };
-        console.log(newCurrency);
+    getCurrentCurrency = async () => {
+        const currentCurrency = await JSON.parse(localStorage.getItem('currentCurrency'));
+        this.setState({ currentCurrency });
     };
+
+    currencyHandler = (newCurrency) => {
+        this.setState({ currentCurrency: newCurrency });
+        localStorage.setItem('currentCurrency', JSON.stringify(newCurrency));
+    };
+
+    async componentDidMount() {
+        await this.getCurrentCurrency();
+    }
 
     render() {
         const { currencies } = this.props;
-        const { showModal } = this.state;
+        const { showModal, currentCurrency } = this.state;
 
         return (
             <>
                 <div onClick={this.toggle} id="portal" className={styles['currencies-symbol']}>
-                    {currencies[0].symbol}
+                    {currentCurrency.symbol}
                     {showModal ? <ArrowUp /> : <ArrowDown />}
                 </div>
 
