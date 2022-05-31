@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import { ReactComponent as BuyButton } from '../../assets/buy-icon.svg';
+import PriceView from '../PriceView/PriceView';
 
 import styles from './ProductCard.module.scss';
 
@@ -34,8 +35,9 @@ class ProductCard extends Component {
                             {brand} {name}
                         </div>
                         <div className={styles['card-info__price']}>
-                            {prices[0].currency.symbol}
-                            {prices[0].amount}
+                            {/* {prices[0].currency.symbol}
+                            {prices[0].amount} */}
+                            <PriceView prices={prices} />
                         </div>
                     </div>
                 </div>

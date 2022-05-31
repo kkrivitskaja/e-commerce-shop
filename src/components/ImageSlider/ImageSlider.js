@@ -3,19 +3,8 @@ import ReactImageMagnify from 'react-image-magnify';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import styles from './ImageSlider.module.css';
+import styles from './ImageSlider.module.scss';
 
-/**ImageSlider is an image slider with zoom effect on PDP
-    props example
-    productImages= [
-    'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087',
-    'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_1_720x.jpg?v=1612816087',
-    'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_3_720x.jpg?v=1612816087',
-    'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_5_720x.jpg?v=1612816087',
-    'https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_4_720x.jpg?v=1612816087',
-];
-    productName
- */
 class ImageSlider extends Component {
     constructor(props) {
         super(props);
@@ -32,11 +21,11 @@ class ImageSlider extends Component {
         this.setState({
             img: image,
         });
-        this.imageRef.current[i].classList.add(styles['slider-gallery__img-wrap-active']);
+        this.imageRef.current[i].classList.add(styles['slider-gallery__img-wrap--active']);
         for (let j = 0; j < this.props.productImages.length; j++) {
             if (i !== j) {
                 this.imageRef.current[j].classList.remove(
-                    styles['slider-gallery__img-wrap-active']
+                    styles['slider-gallery__img-wrap--active']
                 );
             }
         }
@@ -55,7 +44,7 @@ class ImageSlider extends Component {
                     {this.props.productImages.map((image, i) => (
                         <div
                             className={classnames(styles['slider-gallery__img-wrap'], {
-                                [styles['slider-gallery__img-wrap-active']]: i === 0,
+                                [styles['slider-gallery__img-wrap--active']]: i === 0,
                             })}
                             key={i}
                             onMouseOver={() => this.hoverHandler(image, i)}

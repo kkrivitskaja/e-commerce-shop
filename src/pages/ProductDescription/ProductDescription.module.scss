@@ -1,0 +1,26 @@
+body {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.description {
+    display: flex;
+    width: 86.2%;
+    margin: 10rem auto 4.19rem auto;
+    column-gap: 6.25rem;
+
+    &-slider {
+        width: 58%;
+    }
+
+    &-details {
+        width: 33%;
+    }
+
+    @media (max-width:992px) {
+        & {
+            flex-direction: column;
+            row-gap: 2rem;
+        }
+    }
+}

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import styles from './NavBar.module.css';
+import styles from './NavBar.module.scss';
 
 class NavBar extends Component {
     render() {
@@ -13,7 +13,7 @@ class NavBar extends Component {
                 <div className={styles['nav']}>
                     {categories.map((category) => (
                         <NavLink
-                            to={`/${category.name}`}
+                            to={`/catalog/${category.name}`}
                             key={category.name}
                             className={({ isActive }) =>
                                 classnames(styles['nav-link'], {

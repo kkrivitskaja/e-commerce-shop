@@ -1,0 +1,44 @@
+body {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.list-container {
+    display: flex;
+    flex-direction: column;
+    width: 86.2%;
+    margin: 10rem auto 11.9rem auto;
+    row-gap: 6.25rem;
+}
+
+.list {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.63rem;
+    line-height: 160%;
+    text-transform: uppercase;
+
+    &-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6.25rem 2.5rem;
+        background-color: #FFFFFF;
+        justify-content: center;
+    }
+}
+
+@media (max-width:576px) {
+    .list-container {
+        width: 100%;
+    }
+
+    .list {
+        margin: 0 auto;
+
+        &-grid {
+            gap: 0px 0px;
+            row-gap: 3rem;
+        }
+    }
+}

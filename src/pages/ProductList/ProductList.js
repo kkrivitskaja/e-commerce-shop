@@ -5,7 +5,7 @@ import ProductCard from '../../components/ProductCard/ProductCard';
 import { GET_PRODUCTS_BY_CATEGORY } from '../../graphql/Queries';
 import withRouter from '../../helpers/withRouter';
 
-import './ProductList.css';
+import styles from './ProductList.module.scss';
 
 class ProductList extends Component {
     state = {
@@ -49,17 +49,21 @@ class ProductList extends Component {
             <>
                 {loading && <div>LOADING DATA</div>}
                 {products && loading === false && (
-                    <div className="container">
-                        <p className="title">{categoryId}</p>
-                        <div className="grid">
+                    <div className={styles['list-container']}>
+                        <p className={styles['list']}>{categoryId}</p>
+                        <div className={styles['list-grid']}>
                             {products.map((product) => (
                                 <ProductCard
                                     key={product.id}
                                     product={product}
                                     onClick={() => {
-                                        this.props.navigate(`/${categoryId}/${product.id}`, {
-                                            replace: true,
-                                        });
+                                        this.props.navigate(
+                                            `/catalog/${categoryId}/${product.id}`,
+                                            {
+                                                replace: true,
+                                                // state: product,
+                                            }
+                                        );
                                     }}
                                 />
                             ))}

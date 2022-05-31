@@ -6,6 +6,8 @@ import ProductDetails from '../../components/ProductDetails/ProductDetails';
 import { GET_PRODUCT_BY_ID } from '../../graphql/Queries';
 import withRouter from '../../helpers/withRouter';
 
+import styles from './ProductDescription.module.scss';
+
 class ProductDescription extends Component {
     state = {
         product: null,
@@ -31,17 +33,31 @@ class ProductDescription extends Component {
         await this.getProductById(productId);
     }
 
+    async componentDidUpdate(prevProps) {
+        const prevProduct = prevProps.params.productId;
+        const currentProduct = this.props.params.productId;
+        if (prevProduct === currentProduct) {
+            return;
+        }
+        await this.getProductById(currentProduct);
+    }
+
     render() {
-        const { productId } = this.props.params;
         const { product, loading } = this.state;
-        console.log(product);
+
         return (
             <>
                 {loading && <div>LOADING DATA</div>}
                 {product && loading === false && (
-                    <div className="container">
-                        <ImageSlider productImages={product.gallery} />
-                        <ProductDetails product={product} />
+                    <div className={styles['description']}>
+                        <ImageSlider
+                            productImages={product.gallery}
+                            className={styles['description-slider']}
+                        />
+                        <ProductDetails
+                            product={product}
+                            className={styles['description-details']}
+                        />
                     </div>
                 )}
             </>
