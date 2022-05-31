@@ -1,13 +1,9 @@
-body {
+.list-container {
     max-width: 1440px;
     margin: 0 auto;
-}
-
-.list-container {
     display: flex;
     flex-direction: column;
-    width: 86.2%;
-    margin: 10rem auto 11.9rem auto;
+    margin: 10rem 6.25rem 11.9rem 6.25rem;
     row-gap: 6.25rem;
 }
 
@@ -31,6 +27,8 @@ body {
 @media (max-width:576px) {
     .list-container {
         width: 100%;
+        margin: 10rem 0rem 11.9rem 0rem;
+
     }
 
     .list {
