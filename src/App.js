@@ -1,13 +1,11 @@
 import { Component } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import ProductList from './pages/ProductList/ProductList';
 import Cart from './pages/Cart/Cart';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import PagesCommonHeader from './components/PagesCommonHeader/PagesCommonHeader';
 import ProductDescription from './pages/ProductDescription/ProductDescription';
-
-;
 
 class App extends Component {
     render() {
@@ -16,13 +14,14 @@ class App extends Component {
                 <div className="App">
                     <Routes>
                         <Route path="/" element={<PagesCommonHeader />}>
-                            <Route path="/:categoryId" element={<ProductList />} />
+                            <Route path="/catalog/:categoryId" element={<ProductList />} />
                             <Route
-                                path="/:categoryId/:productId"
+                                path="/catalog/:categoryId/:productId"
                                 element={<ProductDescription />}
                             />
                             <Route path={'/cart'} element={<Cart />} />
-                            <Route path="*" element={<PageNotFound />} />
+                            <Route path="/404" element={<PageNotFound />} />
+                            <Route path="*" element={<Navigate replace to="/404" />} />
                         </Route>
                     </Routes>
                 </div>
