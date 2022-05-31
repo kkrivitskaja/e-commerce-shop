@@ -1,7 +1,7 @@
 .currencies-symbol {
     display: flex;
     padding: 0 0.625rem;
-    column-gap: 10px;
+    column-gap: 0.625rem;
     align-items: baseline;
     position: relative;
     color: rgb(29, 31, 34);
@@ -31,7 +31,7 @@
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 500;
-        font-size: 18px;
+        font-size: 1.125rem;
         line-height: 160%;
 
         &:hover,

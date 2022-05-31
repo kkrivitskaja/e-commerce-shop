@@ -1,12 +1,11 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import withStorage from '../../helpers/withStorage';
+
 import styles from './PriceView.module.scss';
 
 class PriceView extends Component {
-    state = {
-        currentCurrency: null,
-    };
     getProductCost = (prices, currency) => {
         const productCost = prices.find((price) => price.currency.label === currency.label);
         if (productCost === undefined) {
@@ -18,14 +17,13 @@ class PriceView extends Component {
     };
 
     render() {
-        const { prices, currency } = this.props;
-        console.log(this.state.currentCurrency);
+        const { prices } = this.props;
+        const { currentCurrency } = this.props.storageVar;
+
         return (
             <>
-                <div
-                    className={`${styles['product-info__price']} ${styles['product-info__price--value']}`}
-                >
-                    {this.getProductCost(prices, currency)}
+                <div className={`${styles['product-price']} ${styles['product-price--value']}`}>
+                    {this.getProductCost(prices, currentCurrency)}
                 </div>
             </>
         );
@@ -48,4 +46,4 @@ PriceView.propTypes = {
     }),
 };
 
-export default PriceView;
+export default withStorage(PriceView);

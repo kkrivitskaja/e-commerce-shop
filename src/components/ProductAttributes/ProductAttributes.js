@@ -44,7 +44,7 @@ class ProductAttributes extends Component {
                                     attribute.type === 'swatch',
                             })}
                         >
-                            {attribute.type !== 'swatch' ? item.displayValue : null}
+                            {attribute.type !== 'swatch' ? item.value : null}
                         </button>
                     ))}
                 </div>
