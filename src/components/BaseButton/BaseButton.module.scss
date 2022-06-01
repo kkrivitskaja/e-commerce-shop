@@ -39,7 +39,7 @@
   &--disabled {
     filter: brightness(125%) saturate(40%);
     cursor: default;
-    pointer-events: none;
+    cursor: not-allowed;
   }
 
   &--outlined {

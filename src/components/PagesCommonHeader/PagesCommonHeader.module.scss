@@ -9,6 +9,12 @@
     background-color: rgb(255, 255, 255);
     z-index: 10;
 
+    @media (max-width: 576px) {
+        & {
+            padding: 1.44rem 1rem 0 1rem;
+        }
+    }
+
     &-logo {
         display: flex;
         justify-content: center;

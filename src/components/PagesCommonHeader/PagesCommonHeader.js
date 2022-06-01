@@ -3,11 +3,11 @@ import { Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withApollo } from 'react-apollo';
 
-import NavBar from '../NavBar/NavBar';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 import { ReactComponent as Cart } from '../../assets/cart-icon.svg';
 import { GET_CATEGORY_AND_CURRENCY } from '../../graphql/Queries';
 import CurrencySelector from '../CurrencySelector/CurrencySelector';
+import NavBar from '../NavBar/NavBar';
 
 import styles from './PagesCommonHeader.module.scss';
 class PagesCommonHeader extends Component {
