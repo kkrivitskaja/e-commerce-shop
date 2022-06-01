@@ -8,6 +8,18 @@ export const GET_CATEGORY = gql`
     }
 `;
 
+export const GET_CATEGORY_AND_CURRENCY = gql`
+    {
+        categories {
+            name
+        }
+        currencies {
+            label
+            symbol
+        }
+    }
+`;
+
 export const GET_PRODUCTS_BY_CATEGORY = gql`
     query getProducts($title: String!) {
         category(input: { title: $title }) {
