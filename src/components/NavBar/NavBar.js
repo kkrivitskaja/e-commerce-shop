@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 import { ReactComponent as Menu } from '../../assets/menu-icon.svg';
 import { ReactComponent as Close } from '../../assets/close-icon.svg';
@@ -43,6 +44,9 @@ class NavBar extends Component {
         return (
             <>
                 <div className={styles['nav']}>
+                    {this.state.click && (
+                        <div className={styles['nav-overlay']} onClick={this.toggle}></div>
+                    )}
                     <div className={styles['nav-icon']} onClick={this.toggle}>
                         {this.state.click ? <Close /> : <Menu />}
                     </div>
@@ -74,5 +78,9 @@ class NavBar extends Component {
         );
     }
 }
+
+NavBar.propTypes = {
+    categories: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default NavBar;
