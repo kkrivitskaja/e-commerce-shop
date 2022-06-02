@@ -1,0 +1,72 @@
+.item-wrapper {
+    padding: 20px 0;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+
+.item-brand {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 27px;
+}
+
+.item-name {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 27px;
+}
+
+.item-details {
+    display: flex;
+ 
+     gap:12px;
+     
+   
+}
+.item-details-quantity{
+     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.quantity-btn{
+    width: 45px;
+    height: 45px;
+    border: 1px solid #1D1F22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+     background-color: transparent;
+}
+
+.quantity-number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.item-details-slider-wrapper {
+    width: 140px;
+    height: 185px;
+    // cursor: pointer;
+}
+
+.item-details-slider {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
