@@ -1,0 +1,116 @@
+.currencies-symbol {
+    display: flex;
+    padding: 0 0.625rem;
+    column-gap: 0.625rem;
+    align-items: baseline;
+    position: relative;
+    color: rgb(29, 31, 34);
+    cursor: pointer;
+    user-select: none;
+}
+
+.currencies-list {
+
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    position: absolute;
+    right: -30px;
+    // position: relative;
+    margin-top: 0.625rem;
+    // margin-right: 87px;
+    background-color: rgb(255, 255, 255);
+    filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+    animation-name: appear;
+    animation-duration: 0.5s;
+    // border: 1px solid black;
+    //  width: 300px;
+    //  padding: 1rem;
+
+    &__btn {
+        display: flex;
+        width: 100%;
+        padding: 1.25rem;
+        cursor: pointer;
+        border: none;
+        color: rgb(29, 31, 34);
+        background-color: transparent;
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1.125rem;
+        line-height: 160%;
+
+        &:hover,
+        &:focus {
+            background-color: rgb(94, 206, 123);
+        }
+    }
+}
+
+.cart-wrapper {
+    padding: 1rem;
+}
+
+.cart-info {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 160%;
+}
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: space-around;
+    margin: 20px 0 40px 0;
+}
+
+.cart-total-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 35px
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.cart-btn {
+    display: flex;
+    gap: 12px;
+
+}
+
+.cart-btn a {
+    text-decoration: none;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width:576px) {
+    .currencies-list {}
+
+    // right: 0px;}
+    .cart-btn {
+        flex-direction: column;
+
+    }
+
+}
