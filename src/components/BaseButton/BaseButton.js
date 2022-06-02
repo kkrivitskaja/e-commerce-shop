@@ -13,6 +13,7 @@ class BaseButton extends Component {
             full,
             outlined,
             disabled,
+            secondary,
             textWrap,
             children,
             ...props
@@ -28,6 +29,7 @@ class BaseButton extends Component {
                         [styles['base-button--disabled']]: disabled,
                         [styles['base-button--full']]: full,
                         [styles['base-button--wrap']]: textWrap,
+                        [styles['base-button--secondary']]: secondary,
                     },
                     className
                 )}
