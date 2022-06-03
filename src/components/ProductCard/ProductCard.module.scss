@@ -17,7 +17,12 @@
 
     &:hover {
         filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+
+        & .card-info__buy--active {
+            display: block;
+        }
     }
+
 
     &-image-wrapper {
         height: 330px;
@@ -32,7 +37,6 @@
 
     &-image__stock {
         position: absolute;
-        width: 100%;
         top: 50%;
         left: 25%;
         color: rgba(141, 143, 154, 1);
@@ -59,10 +63,6 @@
 
             &:hover {
                 filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.1));
-            }
-
-            &--active {
-                display: block;
             }
         }
 
