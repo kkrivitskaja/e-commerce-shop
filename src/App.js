@@ -14,6 +14,7 @@ class App extends Component {
                 <div className="App">
                     <Routes>
                         <Route path="/" element={<PagesCommonHeader />}>
+                            <Route path="/" element={<Navigate replace to="/catalog/all" />} />
                             <Route path="/catalog/:categoryId" element={<ProductList />} />
                             <Route
                                 path="/catalog/:categoryId/:productId"
