@@ -29,7 +29,7 @@ class Modal extends Component {
                     {this.props.children}
                 </div>
             </>,
-            document.getElementById('portal')
+            document.getElementById(this.props.id)
         );
     }
 }
