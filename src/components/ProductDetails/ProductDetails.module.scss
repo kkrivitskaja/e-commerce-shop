@@ -53,6 +53,15 @@
         }
     }
 
+    @media (max-width: 576px) {
+        .product-info__btn {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+    }
+
     &__description {
         font-family: 'Roboto';
         font-weight: 400;

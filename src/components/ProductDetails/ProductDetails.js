@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import BaseButton from '../BaseButton/BaseButton';
 import ProductAttributes from '../ProductAttributes/ProductAttributes';
 import PriceView from '../PriceView/PriceView';
+import withStorage from '../../helpers/withStorage';
+import { addProductToCart } from '../../storage/storageActions';
 
 import styles from './ProductDetails.module.scss';
 
@@ -53,7 +55,16 @@ class ProductDetails extends Component {
                         <span className={styles['product-info__price']}> PRICE: </span>
                         <PriceView prices={prices} />
                     </div>
-                    <BaseButton disabled={!inStock}>
+                    <BaseButton
+                        disabled={!inStock}
+                        onClick={() =>
+                            addProductToCart(
+                                this.props.product,
+                                new Map(this.state.selectedAttribute)
+                            )
+                        }
+                        className={styles['product-info__btn']}
+                    >
                         {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
                     </BaseButton>
                     <div
