@@ -9,6 +9,8 @@ const initialState = {
         symbol: '$',
     },
     productsInCart: getLocalStorageCart || [],
+    //!initial state false!!
+    showModalWindow: true,
 };
 
 const storage = makeVar(initialState);
