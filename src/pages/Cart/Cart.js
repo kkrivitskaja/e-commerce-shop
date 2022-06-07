@@ -1,22 +1,28 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
-import withStorage from '../../helpers/withStorage';
 import CartItem from '../../components/CartItem/CartItem';
 import BaseButton from '../../components/BaseButton/BaseButton';
 import TotalCost from '../../components/TotalCost/TotalCost';
+import { showSuccessOrder } from '../../views/modals/modalActions';
+import withStorage from '../../helpers/withStorage';
 
 import styles from './Cart.module.scss';
 
 class Cart extends Component {
     render() {
-        const { productsInCart } = this.props.storageVar;
+        const { productsInCart, showModalWindow } = this.props.storageVar;
         const isCartItems = productsInCart.length !== 0;
         const isCartEmpty = productsInCart.length === 0;
-        
+
         return (
             <>
-                <div className={styles['cart']}>
+                <div
+                    className={classNames(styles['cart'], {
+                        [styles['cart--modal']]: showModalWindow,
+                    })}
+                >
                     <div>
                         <p className={styles['cart__title']}>CART {isCartEmpty && 'IS EMPTY'}</p>
                     </div>
@@ -31,12 +37,12 @@ class Cart extends Component {
                             <div>
                                 <div className={styles['cart__total']}>
                                     <span className={styles['cart__total-title']}>Total</span>
-                                    <TotalCost className={styles['cart__total-amount']} />
+                                    <TotalCost />
                                 </div>
                                 <div className={styles['cart__btn-wrapper']}>
                                     <BaseButton
                                         className={styles['cart__btn']}
-                                        onClick={() => console.log('Successfully ordered!!!')}
+                                        onClick={() => showSuccessOrder()}
                                     >
                                         order
                                     </BaseButton>
