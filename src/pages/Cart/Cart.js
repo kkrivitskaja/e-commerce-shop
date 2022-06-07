@@ -4,20 +4,26 @@ import { Link } from 'react-router-dom';
 import withStorage from '../../helpers/withStorage';
 import CartItem from '../../components/CartItem/CartItem';
 import BaseButton from '../../components/BaseButton/BaseButton';
+import { costCalculation } from '../../views/cart/cartActions';
+
 
 import styles from './Cart.module.scss';
 
 class Cart extends Component {
     render() {
-        const { productsInCart } = this.props.storageVar;
+        const { productsInCart, currentCurrency } = this.props.storageVar;
+        const isCartItems = productsInCart.length !== 0
+        const isCartEmpty = productsInCart.length === 0;
+        console.log(productsInCart);
+        console.log(currentCurrency);
+        const total = costCalculation(productsInCart, currentCurrency);
+        console.log (total)
 
         return (
             <>
                 <div className={styles['cart']}>
                     <div>
-                        <p className={styles['cart__title']}>
-                            CART {productsInCart.length === 0 && 'IS EMPTY'}
-                        </p>
+                        <p className={styles['cart__title']}>CART {isCartEmpty && 'IS EMPTY'}</p>
                     </div>
 
                     <div className={styles['cart__list']}>
@@ -25,12 +31,15 @@ class Cart extends Component {
                             <CartItem product={product} key={product.id} />
                         ))}
                     </div>
-                    <div>
-                        {productsInCart.length !== 0 && (
+                    <div className={styles['cart__total-wrapper']}>
+                        {isCartItems && (
                             <div>
                                 <div className={styles['cart__total']}>
                                     <span className={styles['cart__total-title']}>Total</span>
-                                    <span className={styles['cart__total-amount']}>$100</span>
+                                    <span className={styles['cart__total-amount']}>
+                                        $100
+                                        {costCalculation(productsInCart, currentCurrency)}
+                                    </span>
                                 </div>
                                 <div className={styles['cart__btn-wrapper']}>
                                     <BaseButton
