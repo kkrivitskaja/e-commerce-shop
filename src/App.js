@@ -1,13 +1,14 @@
 import { Component } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import PagesCommonHeader from './components/PagesCommonHeader/PagesCommonHeader';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import BaseModalWindow from './components/BaseModal/BaseModalWindow';
 import ProductList from './pages/ProductList/ProductList';
+import ProductDescription from './pages/ProductDescription/ProductDescription';
 import Cart from './pages/Cart/Cart';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
-import PagesCommonHeader from './components/PagesCommonHeader/PagesCommonHeader';
-import ProductDescription from './pages/ProductDescription/ProductDescription';
-import ScrollToTop from './components/ScrollToTop/ScrollToTop';
-;
+
 
 class App extends Component {
     render() {
@@ -29,6 +30,7 @@ class App extends Component {
                             </Route>
                         </Routes>
                     </ScrollToTop>
+                    <BaseModalWindow />
                 </div>
             </>
         );

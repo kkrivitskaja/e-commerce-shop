@@ -1,8 +1,10 @@
 import { Component } from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
 import { closeModalWindow } from '../../views/modals/modalActions';
 import withStorage from '../../helpers/withStorage';
+
 import styles from './BaseModalWindow.module.scss';
 
 class BaseModalWindow extends Component {
@@ -24,30 +26,30 @@ class BaseModalWindow extends Component {
         document.removeEventListener('keydown', this.onKeydown);
     }
     render() {
-        const { showModalWindow } = this.props.storageVar;
+        const { showModalWindow, modalMessage } = this.props.storageVar;
 
         return (
-            <>
-                {showModalWindow && (
-                    <>
+            showModalWindow &&
+            ReactDOM.createPortal(
+                <>
+                    <div
+                        className={classNames(styles['modal'], {
+                            [styles['modal--active']]: showModalWindow,
+                        })}
+                        onClick={closeModalWindow}
+                    >
                         <div
-                            className={classNames(styles['modal'], {
-                                [styles['modal--active']]: showModalWindow,
+                            className={classNames(styles['modal__content'], {
+                                [styles['modal__content--active']]: showModalWindow,
                             })}
-                            onClick={closeModalWindow}
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            <div
-                                className={classNames(styles['modal__content'], {
-                                    [styles['modal__content--active']]: showModalWindow,
-                                })}
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                {this.props.children}
-                            </div>
+                            {modalMessage}
                         </div>
-                    </>
-                )}
-            </>
+                    </div>
+                </>,
+                document.getElementById('modal')
+            )
         );
     }
 }
