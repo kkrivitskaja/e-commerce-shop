@@ -4,21 +4,16 @@ import { Link } from 'react-router-dom';
 import withStorage from '../../helpers/withStorage';
 import CartItem from '../../components/CartItem/CartItem';
 import BaseButton from '../../components/BaseButton/BaseButton';
-import { costCalculation } from '../../views/cart/cartActions';
-
+import TotalCost from '../../components/TotalCost/TotalCost';
 
 import styles from './Cart.module.scss';
 
 class Cart extends Component {
     render() {
-        const { productsInCart, currentCurrency } = this.props.storageVar;
-        const isCartItems = productsInCart.length !== 0
+        const { productsInCart } = this.props.storageVar;
+        const isCartItems = productsInCart.length !== 0;
         const isCartEmpty = productsInCart.length === 0;
-        console.log(productsInCart);
-        console.log(currentCurrency);
-        const total = costCalculation(productsInCart, currentCurrency);
-        console.log (total)
-
+        
         return (
             <>
                 <div className={styles['cart']}>
@@ -36,10 +31,7 @@ class Cart extends Component {
                             <div>
                                 <div className={styles['cart__total']}>
                                     <span className={styles['cart__total-title']}>Total</span>
-                                    <span className={styles['cart__total-amount']}>
-                                        $100
-                                        {costCalculation(productsInCart, currentCurrency)}
-                                    </span>
+                                    <TotalCost className={styles['cart__total-amount']} />
                                 </div>
                                 <div className={styles['cart__btn-wrapper']}>
                                     <BaseButton
