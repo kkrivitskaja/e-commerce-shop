@@ -9,7 +9,8 @@ class TotalCost extends Component {
 
         return (
             <>
-                {currentCurrency.symbol} {costCalculation(productsInCart, currentCurrency)}
+                {currentCurrency.symbol}{' '}
+                {costCalculation(productsInCart, currentCurrency).toFixed(2)}
             </>
         );
     }
