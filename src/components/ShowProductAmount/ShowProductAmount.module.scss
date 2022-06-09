@@ -1,0 +1,50 @@
+.quantity {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &-btn {
+        width: 45px;
+        height: 45px;
+        border: 1px solid #1D1F22;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        background-color: transparent;
+
+        @media (max-width:768px) {
+            & {
+                width: 24px;
+                height: 24px;
+                transition: all 0.5s ease;
+            }
+        }
+
+        &--overlay {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &-number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 160%;
+
+        @media (max-width:768px) {
+            & {
+                font-size: 1rem;
+                transition: all 0.5s ease;
+            }
+        }
+
+        &--overlay {
+            font-size: 1rem;
+        }
+    }
+}

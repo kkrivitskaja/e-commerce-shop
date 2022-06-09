@@ -98,18 +98,30 @@ export const setProductAmount = (cartProduct, newAmount) => {
     const prevState = storage();
     const tempCartProduct = [...prevState.productsInCart];
     const index = tempCartProduct.findIndex((item) => item.id === cartProduct.id);
-    if (index === -1) {
-        throw new Error('No item in cart');
+
+    if (index < 0) {
+        console.log('error');
+        throw new Error('No product in the cart');
     }
     if (newAmount === 0) {
         const deleteProduct = () => {
             tempCartProduct.splice(index, 1);
-            storage({ ...prevState, productsInCart: tempCartProduct });
-            setLocalStorageCart(tempCartProduct);
+            const newState = {
+                ...prevState,
+                productsInCart: tempCartProduct,
+            };
+            storage(newState);
+
+            console.log(tempCartProduct, 'after');
+            setLocalStorageCart(newState.productsInCart);
+
             return;
         };
+
+        deleteProduct();
         return;
     }
+
     tempCartProduct[index].amount = newAmount;
     const newState = { ...prevState, productsInCart: tempCartProduct };
     storage(newState);
