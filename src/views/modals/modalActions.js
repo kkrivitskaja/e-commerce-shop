@@ -1,6 +1,6 @@
 import storage from '../../storage/initialState';
 
-import SuccessOrder from '../../components/SuccessOrder/SuccessOrder';
+import SuccessOrder from '../../components/ModalWindows/SuccessOrder/SuccessOrder';
 
 export const closeModalWindow = () => {
     const prevState = storage();
@@ -20,8 +20,14 @@ export const showModalWindow = (children) => {
 };
 
 // showing modals/
-//success order
+//success order modal
 export const showSuccessOrder = () => {
-    console.log('contentToModalWindow');
     showModalWindow(<SuccessOrder />);
 };
+
+//passing data to modal
+export const dataToModal =
+    (Component) =>
+    (data) => {
+        showModalWindow(<Component data={data} />);
+    };

@@ -1,8 +1,7 @@
 import { Component } from 'react';
 
-import BaseButton from '../../components/BaseButton/BaseButton';
-import { closeModalWindow } from '../../views/modals/modalActions';
-import withStorage from '../../helpers/withStorage';
+import BaseButton from '../../BaseButton/BaseButton';
+import { closeModalWindow } from '../../../views/modals/modalActions';
 
 import styles from './SuccessOrder.module.scss';
 
@@ -32,4 +31,4 @@ class SuccessOrder extends Component {
     }
 }
 
-export default withStorage(SuccessOrder);
+export default SuccessOrder;
