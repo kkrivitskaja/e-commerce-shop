@@ -33,7 +33,7 @@ class CartItem extends Component {
     render() {
         const { amount, brand, name, prices, attributes, gallery, productUrl, selectedAttribute } =
             this.props.product;
-        const { modal, overlay } = this.props;
+        const { modal, overlay, cart } = this.props;
 
         return (
             <>
@@ -71,6 +71,7 @@ class CartItem extends Component {
                                           attribute={attribute}
                                           selectedAttribute={selectedAttribute.get(attribute.id)}
                                           overlay
+                                          cart
                                       />
                                   ))
                                 : attributes?.map((attribute) => (
@@ -78,6 +79,7 @@ class CartItem extends Component {
                                           key={attribute.id}
                                           attribute={attribute}
                                           selectedAttribute={selectedAttribute.get(attribute.id)}
+                                          cart
                                       />
                                   ))}
                         </div>
@@ -103,12 +105,14 @@ class CartItem extends Component {
                                 <CartItemSlider gallery={gallery} name={name} />
                             </div>
                         )}
-                        {!modal&&<button
-                            onClick={() => removeProduct(this.props.product)}
-                            className={styles['item-details-btn']}
-                        >
-                            <Close width={15} height={15} />
-                        </button>}
+                        {!modal && (
+                            <button
+                                onClick={() => removeProduct(this.props.product)}
+                                className={styles['item-details-btn']}
+                            >
+                                <Close width={15} height={15} />
+                            </button>
+                        )}
                     </div>
                 </div>
             </>

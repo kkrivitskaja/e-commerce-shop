@@ -15,39 +15,65 @@ class ProductAttributes extends Component {
         this.props.setSelectedAttribute(chosenAttribute);
     };
     render() {
-        const { attribute, overlay } = this.props;
+        const { attribute, overlay, cart } = this.props;
 
         return (
             <div className={styles['attribute']}>
                 <div className={styles['attribute-text']}>{attribute.name}</div>
                 <div className={styles['attribute-btn-wrapper']}>
-                    {attribute.items.map((item) => (
-                        <button
-                            key={item.id}
-                            style={
-                                attribute.type === 'swatch'
-                                    ? {
-                                          backgroundColor: `${item.value}`,
-                                          width: '45px',
-                                      }
-                                    : null
-                            }
-                            onClick={() => {
-                                this.addedAttribute(item);
-                            }}
-                            className={classnames(styles['attribute-btn'], {
-                                [styles['attribute-btn--chosen']]:
-                                    this.props.selectedAttribute?.item.id === item.id &&
-                                    attribute.type !== 'swatch',
-                                [styles['attribute-btn--chosen-swatch']]:
-                                    this.props.selectedAttribute?.item.id === item.id &&
-                                    attribute.type === 'swatch',
-                                [styles['attribute-btn--overlay']]: overlay,
-                            })}
-                        >
-                            {attribute.type !== 'swatch' ? item.value : null}
-                        </button>
-                    ))}
+                    {attribute.items.map((item) =>
+                        cart ? (
+                            <button
+                                key={item.id}
+                                style={
+                                    attribute.type === 'swatch'
+                                        ? {
+                                              backgroundColor: `${item.value}`,
+                                              width: '45px',
+                                          }
+                                        : null
+                                }
+                                className={classnames(styles['attribute-btn'], {
+                                    [styles['attribute-btn--chosen']]:
+                                        this.props.selectedAttribute?.item.id === item.id &&
+                                        attribute.type !== 'swatch',
+                                    [styles['attribute-btn--chosen-swatch']]:
+                                        this.props.selectedAttribute?.item.id === item.id &&
+                                        attribute.type === 'swatch',
+                                    [styles['attribute-btn--overlay']]: overlay,
+                                    [styles['attribute-btn--cart']]: cart,
+                                })}
+                            >
+                                {attribute.type !== 'swatch' ? item.value : null}
+                            </button>
+                        ) : (
+                            <button
+                                key={item.id}
+                                style={
+                                    attribute.type === 'swatch'
+                                        ? {
+                                              backgroundColor: `${item.value}`,
+                                              width: '45px',
+                                          }
+                                        : null
+                                }
+                                onClick={() => {
+                                    this.addedAttribute(item);
+                                }}
+                                className={classnames(styles['attribute-btn'], {
+                                    [styles['attribute-btn--chosen']]:
+                                        this.props.selectedAttribute?.item.id === item.id &&
+                                        attribute.type !== 'swatch',
+                                    [styles['attribute-btn--chosen-swatch']]:
+                                        this.props.selectedAttribute?.item.id === item.id &&
+                                        attribute.type === 'swatch',
+                                    [styles['attribute-btn--overlay']]: overlay,
+                                })}
+                            >
+                                {attribute.type !== 'swatch' ? item.value : null}
+                            </button>
+                        )
+                    )}
                 </div>
             </div>
         );
