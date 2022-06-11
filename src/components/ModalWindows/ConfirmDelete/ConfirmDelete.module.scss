@@ -1,0 +1,39 @@
+.modal {
+    display: flex;
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        line-height: 160%;
+
+        &-title {
+            font-size: 1.25rem;
+            text-align: center;
+            font-weight: 600;
+        }
+    }
+
+    &-btn-wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        @media (max-width:576px) {
+            & {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    }
+
+    &-btn {
+        text-transform: uppercase;
+        width: 200px;
+
+        @media (max-width:576px) {
+            & {
+                width: 100%;
+            }
+        }
+    }
+}

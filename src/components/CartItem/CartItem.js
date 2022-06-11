@@ -46,7 +46,7 @@ class CartItem extends Component {
                             onClick={() => removeProduct(this.props.product)}
                             className={styles['item-details-btn']}
                         >
-                            <Close width={20} height={20}/>
+                            <Close width={20} height={20} />
                         </button>
                     </div>
                 </div>

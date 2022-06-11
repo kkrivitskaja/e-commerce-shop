@@ -1,9 +1,11 @@
 import SuccessAddedCart from '../../components/ModalWindows/SuccessAddedCart/SuccessAddedCart';
 import OutOfStock from '../../components/ModalWindows/OutOfStock/OutOfStock';
 import WarningChoseAttribute from '../../components/ModalWindows/WarningChoseAttribute/WarningChoseAttribute';
+import ConfirmDelete from '../../components/ModalWindows/ConfirmDelete/ConfirmDelete';
 
 import storage from '../../storage/initialState';
 import { dataToModal } from '../modals/modalActions';
+import { closeModalWindow } from '../modals/modalActions';
 import { setLocalStorageCart } from '../../storage/storageActions';
 import generatorUId from '../../helpers/generatorUId';
 
@@ -35,8 +37,6 @@ export const addProductToCart = (product, attribute) => {
         if (productAddedToCart) {
             setProductAmount(productAddedToCart, productAddedToCart.amount + 1);
             dataToModal(SuccessAddedCart)(productAddedToCart);
-
-            //dont forget add method to btn to set amount in CartItem
         } else {
             let currentProductToCart = productPushToCart(product, attribute);
 
@@ -109,15 +109,12 @@ export const setProductAmount = (cartProduct, newAmount) => {
                 ...prevState,
                 productsInCart: tempCartProduct,
             };
+
             storage(newState);
-
-            console.log(tempCartProduct, 'after');
             setLocalStorageCart(newState.productsInCart);
-
             return;
         };
-
-        deleteProduct();
+        dataToModal(ConfirmDelete)(tempCartProduct[index], deleteProduct);
         return;
     }
 
@@ -131,11 +128,21 @@ export const removeProduct = (cartProduct) => {
     const prevState = storage();
     const tempCartProduct = [...prevState.productsInCart];
     const index = tempCartProduct.findIndex((item) => item.id === cartProduct.id);
-    tempCartProduct.splice(index, 1);
+    const message = 'all';
 
-    const newState = { ...prevState, productsInCart: tempCartProduct };
-    storage(newState);
-    setLocalStorageCart(newState.productsInCart);
+    if (index !== -1) {
+        let deleteProduct = () => {
+            tempCartProduct.splice(index, 1);
+            closeModalWindow();
+
+            const newState = { ...prevState, productsInCart: tempCartProduct };
+            storage(newState);
+            setLocalStorageCart(newState.productsInCart);
+        };
+        dataToModal(ConfirmDelete)(tempCartProduct[index], deleteProduct, message);
+    } else {
+        throw new Error('There is no product in the cart');
+    }
 };
 
 export const costCalculation = (productsInCart, currentCurrency) => {
