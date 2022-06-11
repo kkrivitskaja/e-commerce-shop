@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import BaseButton from '../../BaseButton/BaseButton';
 import withRouter from '../../../helpers/withRouter';
@@ -8,6 +9,7 @@ import styles from './OutOfStock.module.scss';
 
 class OutOfStock extends Component {
     render() {
+        const { name, brand } = this.props.data;
         return (
             <>
                 <div className={styles['modal']}>
@@ -15,7 +17,7 @@ class OutOfStock extends Component {
                         <p className={styles['modal__text-title']}>
                             You can't order{' '}
                             <span className={styles['modal__text-name']}>
-                                {this.props.data.name}
+                                {brand} {name}
                             </span>{' '}
                             because it's out of stock!
                         </p>
@@ -37,5 +39,10 @@ class OutOfStock extends Component {
         );
     }
 }
+
+OutOfStock.propTypes = {
+    name: PropTypes.string,
+    brand: PropTypes.string,
+};
 
 export default withRouter(OutOfStock);

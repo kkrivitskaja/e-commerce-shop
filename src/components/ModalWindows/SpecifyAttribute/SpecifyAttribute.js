@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import BaseButton from '../../BaseButton/BaseButton';
 import { closeModalWindow } from '../../../views/modals/modalActions';
@@ -8,6 +9,7 @@ import styles from './SpecifyAttribute.module.scss';
 
 class SpecifyAttribute extends Component {
     render() {
+        const { data } = this.props;
         return (
             <>
                 <div className={styles['modal']}>
@@ -16,11 +18,11 @@ class SpecifyAttribute extends Component {
                             Before ordering,
                             <br /> you must specify all the attributes of the{' '}
                             <span className={styles['modal__text-name']}>
-                                {this.props.data.name}
+                                {data.brand} {data.name}
                             </span>
                         </p>
                         <div>
-                            <CartItem product={this.props.data} />
+                            <CartItem product={data} />
                         </div>
                         <div className={styles['modal-btn-wrapper']}>
                             <BaseButton
@@ -41,5 +43,20 @@ class SpecifyAttribute extends Component {
         );
     }
 }
+
+SpecifyAttribute.propTypes = {
+    data: PropTypes.shape({
+        amount: PropTypes.number,
+        attributes: PropTypes.arrayOf(PropTypes.object),
+        brand: PropTypes.string,
+        gallery: PropTypes.arrayOf(PropTypes.string),
+        id: PropTypes.string,
+        inStock: PropTypes.bool,
+        name: PropTypes.string,
+        productId: PropTypes.string,
+        productUrl: PropTypes.string,
+        selectedAttribute: PropTypes.object,
+    }),
+};
 
 export default SpecifyAttribute;
