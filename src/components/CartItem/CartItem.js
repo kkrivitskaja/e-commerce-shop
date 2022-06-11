@@ -24,7 +24,7 @@ class CartItem extends Component {
                         </NavLink>
 
                         <div>
-                            <PriceView prices={prices} />
+                            <PriceView prices={prices} amount={amount} />
                         </div>
                         <div>
                             {attributes?.map((attribute) => (
