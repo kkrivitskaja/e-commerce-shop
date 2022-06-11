@@ -15,6 +15,13 @@
     &-btn-wrapper {
         display: flex;
         gap: 0.75rem;
+
+        @media (max-width:576px) {
+            & {
+                gap: 0.2rem;
+                transition: all 0.5s ease;
+            }
+        }
     }
 
     &-btn {
@@ -39,6 +46,21 @@
             border: 2px solid rgb(94, 206, 123);
             padding: 2px;
             background-clip: content-box;
+        }
+
+        &--overlay {
+            width: 50px;
+            height: 24px;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width:768px) {
+            & {
+                width: 50px;
+                height: 24px;
+                font-size: 0.875rem;
+                transition: all 0.5s ease;
+            }
         }
     }
 }

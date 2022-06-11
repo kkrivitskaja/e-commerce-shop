@@ -15,7 +15,7 @@ class ProductAttributes extends Component {
         this.props.setSelectedAttribute(chosenAttribute);
     };
     render() {
-        const { attribute } = this.props;
+        const { attribute, overlay } = this.props;
 
         return (
             <div className={styles['attribute']}>
@@ -42,6 +42,7 @@ class ProductAttributes extends Component {
                                 [styles['attribute-btn--chosen-swatch']]:
                                     this.props.selectedAttribute?.item.id === item.id &&
                                     attribute.type === 'swatch',
+                                [styles['attribute-btn--overlay']]: overlay,
                             })}
                         >
                             {attribute.type !== 'swatch' ? item.value : null}
