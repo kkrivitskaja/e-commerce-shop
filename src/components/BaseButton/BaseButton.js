@@ -10,7 +10,6 @@ class BaseButton extends Component {
             tag = 'button',
             type = 'primary',
             className,
-            full,
             outlined,
             disabled,
             secondary,
@@ -27,8 +26,6 @@ class BaseButton extends Component {
                     {
                         [styles['base-button--outlined']]: outlined,
                         [styles['base-button--disabled']]: disabled,
-                        [styles['base-button--full']]: full,
-                        [styles['base-button--wrap']]: textWrap,
                         [styles['base-button--secondary']]: secondary,
                     },
                     className
@@ -45,11 +42,8 @@ BaseButton.propTypes = {
     tag: PropTypes.oneOf(['button', 'a']),
     type: PropTypes.oneOf(['primary', 'secondary']),
     className: PropTypes.string,
-    full: PropTypes.bool,
     outlined: PropTypes.bool,
-    rounded: PropTypes.bool,
     disabled: PropTypes.bool,
-    textWrap: PropTypes.bool,
     children: PropTypes.string,
 };
 
