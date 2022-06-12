@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import BaseButton from '../BaseButton/BaseButton';
 import ProductAttributes from '../ProductAttributes/ProductAttributes';
 import PriceView from '../PriceView/PriceView';
-import withStorage from '../../helpers/withStorage';
-import { addProductToCart } from '../../storage/storageActions';
+// import withStorage from '../../helpers/withStorage';
+import { addProductToCart } from '../../views/cart/cartActions';
 
 import styles from './ProductDetails.module.scss';
 
@@ -49,6 +49,7 @@ class ProductDetails extends Component {
                             attribute={attribute}
                             selectedAttribute={this.state.selectedAttribute?.get(attribute.id)}
                             setSelectedAttribute={this.setSelectedAttribute}
+                            inStock={inStock}
                         />
                     ))}
                     <div className={styles['product-info__price-wrapper']}>

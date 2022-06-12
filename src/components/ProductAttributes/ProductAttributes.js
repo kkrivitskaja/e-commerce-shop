@@ -15,14 +15,14 @@ class ProductAttributes extends Component {
         this.props.setSelectedAttribute(chosenAttribute);
     };
     render() {
-        const { attribute, overlay, cart } = this.props;
+        const { attribute, overlay, cart, inStock } = this.props;
 
         return (
             <div className={styles['attribute']}>
                 <div className={styles['attribute-text']}>{attribute.name}</div>
                 <div className={styles['attribute-btn-wrapper']}>
-                    {attribute.items.map((item) =>
-                        cart ? (
+                    {attribute?.items.map((item) =>
+                        cart || !inStock ? (
                             <button
                                 key={item.id}
                                 style={
@@ -41,7 +41,7 @@ class ProductAttributes extends Component {
                                         this.props.selectedAttribute?.item.id === item.id &&
                                         attribute.type === 'swatch',
                                     [styles['attribute-btn--overlay']]: overlay,
-                                    [styles['attribute-btn--cart']]: cart,
+                                    [styles['attribute-btn--cart']]: cart || !inStock,
                                 })}
                             >
                                 {attribute.type !== 'swatch' ? item.value : null}
