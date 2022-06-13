@@ -2,6 +2,7 @@ import SuccessAddedCart from '../../components/ModalWindows/SuccessAddedCart/Suc
 import OutOfStock from '../../components/ModalWindows/OutOfStock/OutOfStock';
 import WarningChoseAttribute from '../../components/ModalWindows/WarningChoseAttribute/WarningChoseAttribute';
 import ConfirmDelete from '../../components/ModalWindows/ConfirmDelete/ConfirmDelete';
+import VisitProductPage from '../../components/ModalWindows/VisitProductPage/VisitProductPage';
 
 import storage from '../../storage/initialState';
 import { dataToModal } from '../modals/modalActions';
@@ -78,17 +79,22 @@ export const findSameProductsAtCart = (product, attribute, productsInCart) => {
 
     const equalProductsSameAttribute = equalProducts.find((cartProduct) => {
         let sameAttribute;
-        for (const [key, value] of attribute) {
-            const cartAttribute = cartProduct.selectedAttribute.get(key);
-            if (
-                !cartAttribute ||
-                (cartAttribute.id === value.id && cartAttribute.item.id !== value.item.id)
-            ) {
-                sameAttribute = false;
-            } else {
-                sameAttribute = true;
+        if (cartProduct.attributes.length === 0) {
+            sameAttribute = true;
+        } else {
+            for (const [key, value] of attribute) {
+                const cartAttribute = cartProduct.selectedAttribute.get(key);
+                if (
+                    !cartAttribute ||
+                    (cartAttribute.id === value.id && cartAttribute.item.id !== value.item.id)
+                ) {
+                    sameAttribute = false;
+                } else {
+                    sameAttribute = true;
+                }
             }
         }
+
         return sameAttribute;
     });
     return equalProductsSameAttribute;
