@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { instanceOf } from 'prop-types';
 
 import Modal from '../BaseModal/Modal';
 import BaseButton from '../BaseButton/BaseButton';
@@ -102,5 +104,38 @@ class ShopCart extends Component {
         );
     }
 }
+
+ShopCart.propTypes = {
+    productsInCart: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            productId: PropTypes.string,
+            name: PropTypes.string,
+            inStock: PropTypes.bool,
+            gallery: PropTypes.arrayOf(PropTypes.string),
+            attributes: PropTypes.arrayOf(
+                PropTypes.shape({
+                    id: PropTypes.string,
+                    items: PropTypes.arrayOf(
+                        PropTypes.shape({
+                            displayValue: PropTypes.string,
+                            value: PropTypes.string,
+                            id: PropTypes.string,
+                        })
+                    ),
+                    name: PropTypes.string,
+                    type: PropTypes.string,
+                })
+            ),
+            brand: PropTypes.string,
+            prices: PropTypes.array,
+            selectedAttribute: instanceOf(Map),
+            amount: 1,
+            productUrl: PropTypes.string,
+            color: PropTypes.string,
+            fontSize: PropTypes.number,
+        })
+    ),
+};
 
 export default withRouter(withStorage(ShopCart));
