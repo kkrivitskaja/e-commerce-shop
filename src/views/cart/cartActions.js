@@ -25,6 +25,14 @@ export const productPushToCart = (product, attribute) => ({
     productUrl: `/catalog/${product.category}/${product.id}`,
 });
 
+export const addProductWithoutAttToCart = (product, url) => {
+    if (product.attributes.length === 0) {
+        addProductToCart(product, new Map([]));
+    } else {
+        dataToModal(VisitProductPage)(product, undefined, undefined, url);
+    }
+};
+
 export const addProductToCart = (product, attribute) => {
     try {
         const prevState = storage();

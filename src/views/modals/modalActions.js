@@ -27,6 +27,6 @@ export const showSuccessOrder = () => {
 };
 
 //passing data to modal
-export const dataToModal = (Component) => (data, method, message) => {
-    showModalWindow(<Component data={data} method={method} message={message} />);
+export const dataToModal = (Component) => (data, method, message, url) => {
+    showModalWindow(<Component data={data} method={method} message={message} url={url}/>);
 };
