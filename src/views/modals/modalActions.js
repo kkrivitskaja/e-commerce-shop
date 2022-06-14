@@ -1,13 +1,12 @@
 import storage from '../../storage/initialState';
 
 import SuccessOrder from '../../components/ModalWindows/SuccessOrder/SuccessOrder';
-import ConfirmDelete from '../../components/ModalWindows/ConfirmDelete/ConfirmDelete';
 
 export const closeModalWindow = () => {
     const prevState = storage();
     return storage({
         ...prevState,
-        showModalWindow: false,
+        isModalWindow: false,
     });
 };
 
@@ -15,8 +14,34 @@ export const showModalWindow = (children) => {
     const prevState = storage();
     return storage({
         ...prevState,
-        showModalWindow: true,
+        isModalWindow: true,
         modalMessage: children,
+    });
+};
+
+// showing dropdown cart, currency
+export const showCartOverlay = () => {
+    const prevState = storage();
+    return storage({
+        ...prevState,
+        isCartOverlay: true,
+    });
+};
+
+export const showCurrencyDropdown = () => {
+    const prevState = storage();
+    return storage({
+        ...prevState,
+        isCurrencyDropdown: true,
+    });
+};
+
+export const closeDropdownList = () => {
+    const prevState = storage();
+    return storage({
+        ...prevState,
+        isCurrencyDropdown: false,
+        isCartOverlay: false,
     });
 };
 
@@ -28,5 +53,5 @@ export const showSuccessOrder = () => {
 
 //passing data to modal
 export const dataToModal = (Component) => (data, method, message, url) => {
-    showModalWindow(<Component data={data} method={method} message={message} url={url}/>);
+    showModalWindow(<Component data={data} method={method} message={message} url={url} />);
 };

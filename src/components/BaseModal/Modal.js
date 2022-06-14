@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+
+import { closeDropdownList } from '../../views/modals/modalActions';
+import withStorage from '../../helpers/withStorage';
 
 import styles from './Modal.module.scss';
 class Modal extends Component {
@@ -9,7 +13,7 @@ class Modal extends Component {
     onKeydown = ({ key }) => {
         switch (key) {
             case 'Escape':
-                this.props.onClose();
+                closeDropdownList();
                 break;
             default:
                 break;
@@ -18,7 +22,7 @@ class Modal extends Component {
 
     handleClickOutside = (event) => {
         if (this.modalReft.current && !this.modalReft.current.contains(event.target)) {
-            this.props.onClose();
+            closeDropdownList();
         }
     };
 
@@ -33,33 +37,46 @@ class Modal extends Component {
     }
 
     render() {
-        const { cart, overlay } = this.props;
+        const { cart, overlay, children, id } = this.props;
+
         return ReactDOM.createPortal(
             <>
                 {!cart && (
                     <div
-                        onClick={this.props.onClose}
+                        onClick={closeDropdownList}
                         className={styles['modal']}
                         ref={this.modalReft}
                     >
-                        {this.props.children}
+                        {children}
                     </div>
                 )}
                 {cart && (
-                    <div ref={this.cartRef} className={styles['modal']}>
-                        {this.props.children}
-                    </div>
+                    <>
+                        <div
+                            className={styles['modal']}
+                            // ref={this.modalReft}
+                            // onClick={closeDropdownList}
+                        >
+                            {children}
+                        </div>
+                    </>
                 )}
-
                 <div
                     className={classNames(styles['overlay'], {
                         [styles['overlay--dark']]: overlay,
                     })}
                 />
             </>,
-            document.getElementById(this.props.id)
+            document.getElementById(id)
         );
     }
 }
 
-export default Modal;
+Modal.propTypes = {
+    cart: PropTypes.bool,
+    overlay: PropTypes.bool,
+    children: PropTypes.node,
+    id: PropTypes.string,
+};
+
+export default withStorage(Modal);

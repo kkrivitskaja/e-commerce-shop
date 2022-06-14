@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import { closeModalWindow } from '../../views/modals/modalActions';
 import withStorage from '../../helpers/withStorage';
@@ -26,21 +27,21 @@ class BaseModalWindow extends Component {
         document.removeEventListener('keydown', this.onKeydown);
     }
     render() {
-        const { showModalWindow, modalMessage } = this.props.storageVar;
+        const { isModalWindow, modalMessage } = this.props.storageVar;
 
         return (
-            showModalWindow &&
+            isModalWindow &&
             ReactDOM.createPortal(
                 <>
                     <div
                         className={classNames(styles['modal'], {
-                            [styles['modal--active']]: showModalWindow,
+                            [styles['modal--active']]: isModalWindow,
                         })}
                         onClick={closeModalWindow}
                     >
                         <div
                             className={classNames(styles['modal__content'], {
-                                [styles['modal__content--active']]: showModalWindow,
+                                [styles['modal__content--active']]: isModalWindow,
                             })}
                             onClick={(e) => e.stopPropagation()}
                         >
@@ -53,5 +54,9 @@ class BaseModalWindow extends Component {
         );
     }
 }
+BaseModalWindow.propTypes = {
+    showModalWindow: PropTypes.bool,
+    modalMessage: PropTypes.element,
+};
 
 export default withStorage(BaseModalWindow);

@@ -9,8 +9,10 @@ const initialState = {
         symbol: '$',
     },
     productsInCart: getLocalStorageCart || [],
-    showModalWindow: false,
+    isModalWindow: false,
     modalMessage: null,
+    isCurrencyDropdown: false,
+    isCartOverlay: false,
 };
 
 const storage = makeVar(initialState);
