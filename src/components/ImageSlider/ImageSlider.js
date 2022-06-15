@@ -6,54 +6,30 @@ import classnames from 'classnames';
 import styles from './ImageSlider.module.scss';
 
 class ImageSlider extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            img: this.props.productImages[0],
-        };
-        this.imageRef = React.createRef();
-        this.imageRef.current = [];
-        this.hoverHandler = this.hoverHandler.bind(this);
-        this.addRefs = this.addRefs.bind(this);
-    }
-
-    hoverHandler(image, i) {
-        this.setState({
-            img: image,
-        });
-        this.imageRef.current[i].classList.add(styles['slider-gallery__img-wrap--active']);
-        for (let j = 0; j < this.props.productImages.length; j++) {
-            if (i !== j) {
-                this.imageRef.current[j].classList.remove(
-                    styles['slider-gallery__img-wrap--active']
-                );
-            }
-        }
-    }
-
-    addRefs(element) {
-        if (element && !this.imageRef.current.includes(element)) {
-            this.imageRef.current.push(element);
-        }
-    }
+    state = {
+        img: 0,
+    };
 
     render() {
+        const { productImages, productName } = this.props;
+
         return (
             <div className={styles['slider']}>
                 <div className={styles['slider-gallery']}>
-                    {this.props.productImages.map((image, i) => (
+                    {productImages?.map((image, i) => (
                         <div
-                            className={classnames(styles['slider-gallery__img-wrap'], {
-                                [styles['slider-gallery__img-wrap--active']]: i === 0,
-                            })}
-                            key={i}
-                            onMouseOver={() => this.hoverHandler(image, i)}
+                            className={classnames(
+                                styles['slider-gallery__img-wrap'],
+                                this.state.img === i && styles['slider-gallery__img-wrap--active']
+                            )}
+                            key={image}
+                            onMouseOver={() => this.setState({ img: i })}
                             ref={this.addRefs}
                         >
                             <img
                                 className={styles['slider-gallery__img']}
                                 src={image}
-                                alt={this.props.productName}
+                                alt={productName}
                             />
                         </div>
                     ))}
@@ -63,17 +39,28 @@ class ImageSlider extends Component {
                         {...{
                             smallImage: {
                                 isFluidWidth: true,
-                                src: this.state.img,
+                                src:
+                                    this.props.productImages[this.state.img] ||
+                                    this.props.productImages[0],
+                                width: 300,
+                                height: 300,
                             },
                             largeImage: {
-                                src: this.state.img,
-                                width: 1800,
-                                height: 1800,
+                                src:
+                                    this.props.productImages[this.state.img] ||
+                                    this.props.productImages[0],
+                                width: 1000,
+                                height: 1000,
                             },
+
                             enlargedImageContainerDimensions: {
                                 width: '100%',
                                 height: '100%',
                             },
+                            enlargedImagePosition: 'over',
+                            isHintEnabled: true,
+                            hintTextMouse: 'Hover to Zoom',
+                            shouldHideHintAfterFirstActivation: false,
                         }}
                     />
                 </div>
