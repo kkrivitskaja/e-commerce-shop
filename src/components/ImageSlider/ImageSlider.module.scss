@@ -16,7 +16,7 @@
             user-select: none;
 
             &--active {
-                border: 2px solid rgb(94, 206, 123, 1);
+                border: 2px solid var(--background-green);
             }
         }
 
