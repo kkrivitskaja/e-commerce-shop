@@ -15,7 +15,6 @@ class BaseButton extends Component {
             disabled,
             secondary,
             small,
-            large,
             children,
             ...props
         } = this.props;
@@ -31,7 +30,6 @@ class BaseButton extends Component {
                         [styles['base-button--disabled']]: disabled,
                         [styles['base-button--secondary']]: secondary,
                         [styles['base-button--small']]: small,
-                        [styles['base-button--large']]: large,
                     },
                     className
                 )}
@@ -51,7 +49,6 @@ BaseButton.propTypes = {
     full: PropTypes.bool,
     disabled: PropTypes.bool,
     small: PropTypes.bool,
-    large: PropTypes.bool,
     children: PropTypes.string,
 };
 
