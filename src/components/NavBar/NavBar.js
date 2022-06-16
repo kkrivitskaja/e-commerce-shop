@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import { ReactComponent as Menu } from '../../assets/menu-icon.svg';
 import { ReactComponent as Close } from '../../assets/close-icon.svg';
@@ -58,7 +58,7 @@ class NavBar extends Component {
                         }
                         onClick={this.closeMobileMenu}
                     >
-                        {categories.map((category) => (
+                        {categories?.map((category) => (
                             <NavLink
                                 to={`/catalog/${category.name}`}
                                 key={category.name}
