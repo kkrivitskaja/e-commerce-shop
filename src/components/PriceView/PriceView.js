@@ -2,35 +2,25 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { getProductCost } from '../../views/cart/cartActions';
 import withStorage from '../../helpers/withStorage';
 
 import styles from './PriceView.module.scss';
 
 class PriceView extends Component {
-    getProductCost = (prices, currency, amount = 1) => {
-        const productCost = prices.find((price) => price.currency.label === currency.label);
-        const price = productCost.amount * amount;
-        if (productCost === undefined) {
-            throw Error(
-                `Sorry, no price available for ${currency.label} currency. Please select other.`
-            );
-        }
-
-        return `${productCost.currency.symbol} ${price.toFixed(2)}`;
-    };
-
     render() {
         const { currentCurrency } = this.props.storageVar;
-        const { prices, amount, overlay } = this.props;
+        const { prices, amount, overlay, plp } = this.props;
 
         return (
             <>
                 <div
                     className={classNames(styles['product-price'], {
                         [styles['product-price--overlay']]: overlay,
+                        [styles['product-price--plp']]: plp,
                     })}
                 >
-                    {this.getProductCost(prices, currentCurrency, amount)}
+                    {getProductCost(prices, currentCurrency, amount)}
                 </div>
             </>
         );
@@ -47,11 +37,13 @@ PriceView.propTypes = {
             amount: PropTypes.number,
         })
     ),
-    currency: PropTypes.shape({
+    currentCurrency: PropTypes.shape({
         label: PropTypes.string,
         symbol: PropTypes.string,
     }),
     amount: PropTypes.number,
+    overlay: PropTypes.bool,
+    plp: PropTypes.bool,
 };
 
 export default withStorage(PriceView);

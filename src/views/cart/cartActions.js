@@ -3,6 +3,7 @@ import OutOfStock from '../../components/ModalWindows/OutOfStock/OutOfStock';
 import WarningChoseAttribute from '../../components/ModalWindows/WarningChoseAttribute/WarningChoseAttribute';
 import ConfirmDelete from '../../components/ModalWindows/ConfirmDelete/ConfirmDelete';
 import VisitProductPage from '../../components/ModalWindows/VisitProductPage/VisitProductPage';
+import ErrorModal from '../../components/ModalWindows/ErrorModal/ErrorModal';
 
 import storage from '../../storage/initialState';
 import { dataToModal } from '../modals/modalActions';
@@ -52,18 +53,14 @@ export const addProductToCart = (product, attribute) => {
             //check if product inStock
             if (!currentProductToCart.inStock) {
                 dataToModal(OutOfStock)(currentProductToCart);
-                throw new Error(
-                    `You can't order ${currentProductToCart.name} because it's out of stock!`
-                );
+                return;
             }
 
             //check if all attribute specify
             for (const { id } of currentProductToCart.attributes) {
                 if (!attribute.get(id)) {
                     dataToModal(WarningChoseAttribute)(currentProductToCart);
-                    throw new Error(
-                        `Before ordering ${currentProductToCart.name}, you must specify all their attributes!`
-                    );
+                    return;
                 }
             }
 
@@ -76,7 +73,7 @@ export const addProductToCart = (product, attribute) => {
             dataToModal(SuccessAddedCart)(currentProductToCart);
         }
     } catch (error) {
-        console.log(error.message);
+        dataToModal(ErrorModal)(undefined, undefined, error.message);
     }
 };
 
@@ -167,4 +164,16 @@ export const costCalculation = (productsInCart, currentCurrency) => {
                 product.amount
         );
     }, 0);
+};
+
+export const getProductCost = (prices, currency, amount = 1) => {
+    const productCost = prices.find((price) => price.currency.label === currency.label);
+    const price = productCost.amount * amount;
+    if (productCost === undefined) {
+        throw Error(
+            `Sorry, no price available for ${currency.label} currency. Please select other.`
+        );
+    }
+
+    return `${productCost.currency.symbol} ${price.toFixed(2)}`;
 };
