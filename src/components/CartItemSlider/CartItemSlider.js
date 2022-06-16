@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { ReactComponent as RightArrow } from '../../assets/right-arrow.svg';
@@ -11,12 +12,18 @@ class CartItemSlider extends Component {
         imgIndex: 0,
     };
     render() {
-        const { gallery, name } = this.props;
+        const { gallery, name, overlay } = this.props;
         const galleryLength = gallery.length;
+        const showButton = galleryLength > 1;
+
         return (
             <>
-                <div className={styles['slider']}>
-                    {galleryLength > 1 && (
+                <div
+                    className={classNames(styles['slider'], {
+                        [styles['slider--overlay']]: overlay,
+                    })}
+                >
+                    {showButton && (
                         <button
                             className={styles['slider-btn']}
                             onClick={() => {
@@ -39,7 +46,7 @@ class CartItemSlider extends Component {
                         alt={name}
                         className={styles['slider-img']}
                     />
-                    {galleryLength > 1 && (
+                    {showButton && (
                         <button
                             className={styles['slider-btn']}
                             onClick={() => {
@@ -65,6 +72,7 @@ class CartItemSlider extends Component {
 CartItemSlider.propTypes = {
     gallery: PropTypes.arrayOf(PropTypes.string),
     name: PropTypes.string,
+    overlay: PropTypes.bool,
 };
 
 export default CartItemSlider;
