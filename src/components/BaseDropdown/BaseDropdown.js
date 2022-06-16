@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { closeDropdownList } from '../../views/modals/modalActions';
-import withStorage from '../../helpers/withStorage';
 
-import styles from './Modal.module.scss';
-class Modal extends Component {
+import styles from './BaseDropdown.module.scss';
+
+class BaseDropdown extends Component {
     modalReft = React.createRef();
 
     onKeydown = ({ key }) => {
@@ -51,15 +51,9 @@ class Modal extends Component {
                     </div>
                 )}
                 {cart && (
-                    <>
-                        <div
-                            className={styles['modal']}
-                            // ref={this.modalReft}
-                            // onClick={closeDropdownList}
-                        >
-                            {children}
-                        </div>
-                    </>
+                    <div className={styles['modal']} ref={this.modalReft}>
+                        {children}
+                    </div>
                 )}
                 <div
                     className={classNames(styles['overlay'], {
@@ -72,11 +66,11 @@ class Modal extends Component {
     }
 }
 
-Modal.propTypes = {
+BaseDropdown.propTypes = {
     cart: PropTypes.bool,
     overlay: PropTypes.bool,
     children: PropTypes.node,
     id: PropTypes.string,
 };
 
-export default withStorage(Modal);
+export default BaseDropdown;
