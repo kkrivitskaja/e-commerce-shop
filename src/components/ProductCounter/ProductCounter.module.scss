@@ -1,25 +1,20 @@
 .quantity {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    justify-content: space-between;
 
     &-btn {
         width: 45px;
         height: 45px;
-        border: 1px solid rgb(29, 31, 34);
+        border: 1px solid var(--font-color-primary);
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         background-color: transparent;
 
-        & svg {
-            width: 15px;
-            height: 15px;
-        }
-
         &:hover {
-            background-color: rgb(94, 206, 123, 1);
+            background-color: var(--background-green);
         }
 
         @media (max-width:768px) {
