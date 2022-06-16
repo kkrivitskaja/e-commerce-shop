@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Modal from '../BaseModal/Modal';
+import BaseDropdown from '../BaseDropdown/BaseDropdown';
 import { ReactComponent as ArrowUp } from '../../assets/arrow-up.svg';
 import { ReactComponent as ArrowDown } from '../../assets/arrow-down.svg';
 
@@ -10,10 +10,9 @@ import { showCurrencyDropdown } from '../../views/modals/modalActions';
 import storage from '../../storage/initialState';
 import withStorage from '../../helpers/withStorage';
 
+import styles from './CurrencySwitcher.module.scss';
 
-import styles from './CurrencySelector.module.scss';
-
-class CurrencySelector extends Component {
+class CurrencySwitcher extends Component {
     currencyHandler = (newCurrency) => {
         const newState = {
             ...storage(),
@@ -30,8 +29,7 @@ class CurrencySelector extends Component {
         return (
             <>
                 <div
-                    onClick={
-                        showCurrencyDropdown}
+                    onClick={showCurrencyDropdown}
                     id="currency"
                     className={styles['currencies-symbol']}
                 >
@@ -40,33 +38,28 @@ class CurrencySelector extends Component {
                 </div>
 
                 {isCurrencyDropdown && (
-                <Modal
-                    onClick={
-                        showCurrencyDropdown
-                    }
-                    id="currency"
-                >
-                    <div className={styles['currencies-list']}>
-                        {currencies.map((currency) => (
-                            <button
-                                onClick={() => {
-                                    this.currencyHandler(currency);
-                                }}
-                                key={currency.label}
-                                className={styles['currencies-list__btn']}
-                            >
-                                {currency.label} {currency.symbol}
-                            </button>
-                        ))}
-                    </div>
-                </Modal>
-                )} 
+                    <BaseDropdown onClick={showCurrencyDropdown} id="currency">
+                        <div className={styles['currencies-list']}>
+                            {currencies?.map((currency) => (
+                                <button
+                                    onClick={() => {
+                                        this.currencyHandler(currency);
+                                    }}
+                                    key={currency.label}
+                                    className={styles['currencies-list__btn']}
+                                >
+                                    {currency.label} {currency.symbol}
+                                </button>
+                            ))}
+                        </div>
+                    </BaseDropdown>
+                )}
             </>
         );
     }
 }
 
-CurrencySelector.propTypes = {
+CurrencySwitcher.propTypes = {
     currencies: PropTypes.arrayOf(
         PropTypes.shape({
             label: PropTypes.string,
@@ -75,4 +68,4 @@ CurrencySelector.propTypes = {
     ),
 };
 
-export default withStorage(CurrencySelector);
+export default withStorage(CurrencySwitcher);
