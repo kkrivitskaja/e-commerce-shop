@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DOMPurify from 'dompurify';
+// import DOMPurify from 'dompurify';
 import PropTypes from 'prop-types';
 
 import BaseButton from '../BaseButton/BaseButton';
@@ -7,6 +7,7 @@ import ProductAttributes from '../ProductAttributes/ProductAttributes';
 import PriceView from '../PriceView/PriceView';
 // import withStorage from '../../helpers/withStorage';
 import { addProductToCart } from '../../views/cart/cartActions';
+import parseHTML from '../../helpers/parseHTML';
 
 import styles from './ProductDetails.module.scss';
 
@@ -28,7 +29,6 @@ class ProductDetails extends Component {
 
     render() {
         const { name, inStock, description, brand, prices, attributes } = this.props.product;
-
         return (
             <>
                 <div className={styles['product-info']}>
@@ -58,23 +58,18 @@ class ProductDetails extends Component {
                     </div>
                     <BaseButton
                         disabled={!inStock}
-                        onClick={() =>
+                        onClick={() => {
                             addProductToCart(
                                 this.props.product,
                                 new Map(this.state.selectedAttribute)
-                            )
-                        }
+                            );
+                        }}
                         className={styles['product-info__btn']}
                     >
                         {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
                     </BaseButton>
-                    <div
-                        className={styles['product-info__description']}
-                        /**used a sanitizer DOMPurify.sanitize() to prevent XSS*/
-                        dangerouslySetInnerHTML={{
-                            __html: DOMPurify.sanitize(description),
-                        }}
-                    />
+
+                    {parseHTML(description, styles['product-info__description'])}
                 </div>
             </>
         );
