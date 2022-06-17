@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-// import DOMPurify from 'dompurify';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import BaseButton from '../BaseButton/BaseButton';
 import ProductAttributes from '../ProductAttributes/ProductAttributes';
 import PriceView from '../PriceView/PriceView';
-// import withStorage from '../../helpers/withStorage';
 import { addProductToCart } from '../../views/cart/cartActions';
 import parseHTML from '../../helpers/parseHTML';
 
@@ -29,6 +27,7 @@ class ProductDetails extends Component {
 
     render() {
         const { name, inStock, description, brand, prices, attributes } = this.props.product;
+
         return (
             <>
                 <div className={styles['product-info']}>
@@ -43,15 +42,19 @@ class ProductDetails extends Component {
                         </span>
                         <span className={styles['product-info__name']}> {name} </span>
                     </div>
-                    {attributes?.map((attribute) => (
-                        <ProductAttributes
-                            key={attribute.id}
-                            attribute={attribute}
-                            selectedAttribute={this.state.selectedAttribute?.get(attribute.id)}
-                            setSelectedAttribute={this.setSelectedAttribute}
-                            inStock={inStock}
-                        />
-                    ))}
+
+                    <div className={styles['product-info__attributes']}>
+                        {attributes?.map((attribute) => (
+                            <ProductAttributes
+                                key={attribute.id}
+                                attribute={attribute}
+                                selectedAttribute={this.state.selectedAttribute?.get(attribute.id)}
+                                setSelectedAttribute={this.setSelectedAttribute}
+                                inStock={inStock}
+                            />
+                        ))}
+                    </div>
+
                     <div className={styles['product-info__price-wrapper']}>
                         <span className={styles['product-info__price']}> PRICE: </span>
                         <PriceView prices={prices} />
@@ -64,7 +67,6 @@ class ProductDetails extends Component {
                                 new Map(this.state.selectedAttribute)
                             );
                         }}
-                        className={styles['product-info__btn']}
                     >
                         {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
                     </BaseButton>
@@ -81,8 +83,29 @@ ProductDetails.propTypes = {
     inStock: PropTypes.bool,
     description: PropTypes.string,
     brand: PropTypes.string,
-    prices: PropTypes.array,
-    attributes: PropTypes.array,
+    prices: PropTypes.arrayOf(
+        PropTypes.shape({
+            currency: PropTypes.shape({
+                label: PropTypes.string,
+                symbol: PropTypes.string,
+            }),
+            amount: PropTypes.number,
+        })
+    ),
+    attributes: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            items: PropTypes.arrayOf(
+                PropTypes.shape({
+                    displayValue: PropTypes.string,
+                    value: PropTypes.string,
+                    id: PropTypes.string,
+                })
+            ),
+            name: PropTypes.string,
+            type: PropTypes.string,
+        })
+    ),
 };
 
 export default ProductDetails;
