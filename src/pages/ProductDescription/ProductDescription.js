@@ -1,10 +1,10 @@
 import { Component } from 'react';
-import { withApollo } from 'react-apollo';
 
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
 import ProductDetails from '../../components/ProductDetails/ProductDetails';
 import { GET_PRODUCT_BY_ID } from '../../graphql/Queries';
 import withRouter from '../../helpers/withRouter';
+import withApolloClient from '../../helpers/withApolloClient'
 
 import styles from './ProductDescription.module.scss';
 
@@ -30,12 +30,19 @@ class ProductDescription extends Component {
 
     async componentDidMount() {
         const { productId } = this.props.params;
+        const { currentProduct } = this.props.location;
+
+        if (currentProduct) {
+            this.setState({ product: currentProduct });
+            return;
+        }
         await this.getProductById(productId);
     }
 
     async componentDidUpdate(prevProps) {
         const prevProduct = prevProps.params.productId;
         const currentProduct = this.props.params.productId;
+       
         if (prevProduct === currentProduct) {
             return;
         }
@@ -65,4 +72,4 @@ class ProductDescription extends Component {
     }
 }
 
-export default withApollo(withRouter(ProductDescription));
+export default withApolloClient(withRouter(ProductDescription));

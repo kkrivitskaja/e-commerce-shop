@@ -1,10 +1,10 @@
 import { Component } from 'react';
-import { withApollo } from 'react-apollo';
 
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { GET_PRODUCTS_BY_CATEGORY } from '../../graphql/Queries';
 import withRouter from '../../helpers/withRouter';
 import withStorage from '../../helpers/withStorage';
+import withApolloClient from '../../helpers/withApolloClient';
 
 import styles from './ProductList.module.scss';
 
@@ -58,7 +58,7 @@ class ProductList extends Component {
                                     key={product.id}
                                     product={product}
                                     url={`/catalog/${categoryId}/${product.id}`}
-                                    onClick={() => {
+                                    navigate={() => {
                                         this.props.navigate(`/catalog/${categoryId}/${product.id}`);
                                     }}
                                 />
@@ -71,4 +71,4 @@ class ProductList extends Component {
     }
 }
 
-export default withStorage(withApollo(withRouter(ProductList)));
+export default withStorage(withApolloClient(withRouter(ProductList)));

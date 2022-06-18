@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { withApollo } from 'react-apollo';
 
-import { ReactComponent as Logo } from '../../assets/logo.svg';
-import { ReactComponent as Cart } from '../../assets/cart-icon.svg';
-import { GET_CATEGORY_AND_CURRENCY } from '../../graphql/Queries';
-import CurrencySelector from '../CurrencySelector/CurrencySelector';
 import NavBar from '../NavBar/NavBar';
+import ShopCart from '../ShopCart/ShopCart';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
+import { GET_CATEGORY_AND_CURRENCY } from '../../graphql/Queries';
+import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
+import withApolloClient from '../../helpers/withApolloClient';
 
 import styles from './PagesCommonHeader.module.scss';
 class PagesCommonHeader extends Component {
@@ -44,10 +44,8 @@ class PagesCommonHeader extends Component {
                             <Logo />
                         </div>
                         <div className={styles['header-actions']}>
-                            <CurrencySelector currencies={currencies} />
-                            <button className="header-actions__btn">
-                                <Cart />
-                            </button>
+                            <CurrencySwitcher currencies={currencies} />
+                            <ShopCart />
                         </div>
                     </header>
                 )}
@@ -64,4 +62,4 @@ PagesCommonHeader.propTypes = {
     categories: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default withApollo(PagesCommonHeader);
+export default withApolloClient(PagesCommonHeader);
