@@ -79,19 +79,6 @@ class ProductDetails extends Component {
 }
 
 ProductDetails.propTypes = {
-    name: PropTypes.string,
-    inStock: PropTypes.bool,
-    description: PropTypes.string,
-    brand: PropTypes.string,
-    prices: PropTypes.arrayOf(
-        PropTypes.shape({
-            currency: PropTypes.shape({
-                label: PropTypes.string,
-                symbol: PropTypes.string,
-            }),
-            amount: PropTypes.number,
-        })
-    ),
     attributes: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string,
@@ -104,6 +91,22 @@ ProductDetails.propTypes = {
             ),
             name: PropTypes.string,
             type: PropTypes.string,
+        })
+    ),
+    brand: PropTypes.string,
+    category: PropTypes.string,
+    description: PropTypes.string,
+    gallery: PropTypes.arrayOf(PropTypes.string),
+    id: PropTypes.string,
+    inStock: PropTypes.bool,
+    name: PropTypes.string,
+    prices: PropTypes.arrayOf(
+        PropTypes.shape({
+            currency: PropTypes.shape({
+                label: PropTypes.string,
+                symbol: PropTypes.string,
+            }),
+            amount: PropTypes.number,
         })
     ),
 };
