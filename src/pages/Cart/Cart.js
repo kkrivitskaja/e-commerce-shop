@@ -1,64 +1,105 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames';
+import PropTypes, { instanceOf } from 'prop-types';
 
 import CartItem from '../../components/CartItem/CartItem';
 import BaseButton from '../../components/BaseButton/BaseButton';
 import TotalCost from '../../components/TotalCost/TotalCost';
 import { showSuccessOrder } from '../../views/modals/modalActions';
+import { closeModalWindow } from '../../views/modals/modalActions';
 import withStorage from '../../helpers/withStorage';
+import withRouter from '../../helpers/withRouter';
 
 import styles from './Cart.module.scss';
 
 class Cart extends Component {
     render() {
-        const { productsInCart, showModalWindow } = this.props.storageVar;
-        const isCartItems = productsInCart.length !== 0;
+        const { productsInCart } = this.props.storageVar;
         const isCartEmpty = productsInCart.length === 0;
 
         return (
             <>
-                <div
-                    className={classNames(styles['cart'], {
-                        [styles['cart--modal']]: showModalWindow,
-                    })}
-                >
-                    <div>
+                <div className={styles['cart']}>
+                    <div className={styles['cart__title-wrapper']}>
                         <p className={styles['cart__title']}>CART {isCartEmpty && 'IS EMPTY'}</p>
+                        {isCartEmpty && (
+                            <BaseButton
+                                onClick={() => {
+                                    this.props.navigate(`/catalog/all`);
+                                    closeModalWindow();
+                                }}
+                                secondary
+                                className={styles['cart__btn']}
+                            >
+                                back to catalog
+                            </BaseButton>
+                        )}
                     </div>
 
                     <div className={styles['cart__list']}>
                         {productsInCart?.map((product) => (
-                            <CartItem product={product} key={product.id} />
+                            <CartItem product={product} key={product.id} cart />
                         ))}
                     </div>
-                    <div className={styles['cart__total-wrapper']}>
-                        {isCartItems && (
-                            <div>
-                                <div className={styles['cart__total']}>
-                                    <span className={styles['cart__total-title']}>Total</span>
-                                    <TotalCost />
-                                </div>
-                                <div className={styles['cart__btn-wrapper']}>
-                                    <BaseButton
-                                        className={styles['cart__btn']}
-                                        onClick={() => showSuccessOrder()}
-                                    >
-                                        order
-                                    </BaseButton>
-                                    <Link to="/catalog/all" className={styles['cart__btn-link']}>
-                                        <BaseButton secondary className={styles['cart__btn']}>
-                                            back to catalog
-                                        </BaseButton>
-                                    </Link>
-                                </div>
+                    {!isCartEmpty && (
+                        <div className={styles['cart__total-wrapper']}>
+                            <div className={styles['cart__total']}>
+                                <TotalCost taxRate={21} />
                             </div>
-                        )}
-                    </div>
+                            <div className={styles['cart__btn-wrapper']}>
+                                <BaseButton
+                                    className={styles['cart__btn']}
+                                    onClick={showSuccessOrder}
+                                    full
+                                >
+                                    order
+                                </BaseButton>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </>
         );
     }
 }
 
-export default withStorage(Cart);
+TotalCost.propTypes = {
+    productsInCart: PropTypes.arrayOf(
+        PropTypes.shape({
+            amount: PropTypes.number,
+
+            attributes: PropTypes.arrayOf(
+                PropTypes.shape({
+                    id: PropTypes.string,
+                    items: PropTypes.arrayOf(
+                        PropTypes.shape({
+                            displayValue: PropTypes.string,
+                            value: PropTypes.string,
+                            id: PropTypes.string,
+                        })
+                    ),
+                    name: PropTypes.string,
+                    type: PropTypes.string,
+                })
+            ),
+            brand: PropTypes.string,
+            gallery: PropTypes.arrayOf(PropTypes.string),
+            id: PropTypes.string,
+            inStock: PropTypes.bool,
+            name: PropTypes.string,
+            prices: PropTypes.arrayOf(
+                PropTypes.shape({
+                    currency: PropTypes.shape({
+                        label: PropTypes.string,
+                        symbol: PropTypes.string,
+                    }),
+                    amount: PropTypes.number,
+                })
+            ),
+            productId: PropTypes.string,
+            productUrl: PropTypes.string,
+            selectedAttribute: instanceOf(Map),
+        })
+    ),
+};
+
+export default withRouter(withStorage(Cart));
