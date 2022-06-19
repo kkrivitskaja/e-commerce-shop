@@ -2,9 +2,10 @@ import { Component } from 'react';
 
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
 import ProductDetails from '../../components/ProductDetails/ProductDetails';
+import ItemNotFound from '../../components/ItemNotFound/ItemNotFound';
 import { GET_PRODUCT_BY_ID } from '../../graphql/Queries';
 import withRouter from '../../helpers/withRouter';
-import withApolloClient from '../../helpers/withApolloClient'
+import withApolloClient from '../../helpers/withApolloClient';
 
 import styles from './ProductDescription.module.scss';
 
@@ -14,6 +15,7 @@ class ProductDescription extends Component {
         loading: true,
         error: null,
     };
+
     getProductById = async (productId) => {
         const { loading, error, data } = await this.props.client.query({
             query: GET_PRODUCT_BY_ID,
@@ -21,6 +23,7 @@ class ProductDescription extends Component {
                 id: productId,
             },
         });
+
         this.setState({
             product: data?.product,
             loading,
@@ -42,7 +45,7 @@ class ProductDescription extends Component {
     async componentDidUpdate(prevProps) {
         const prevProduct = prevProps.params.productId;
         const currentProduct = this.props.params.productId;
-       
+
         if (prevProduct === currentProduct) {
             return;
         }
@@ -51,11 +54,12 @@ class ProductDescription extends Component {
 
     render() {
         const { product, loading } = this.state;
-
+       
         return (
             <>
-                {loading && <div>LOADING DATA</div>}
-                {product && loading === false && (
+                {loading ? (
+                    <div>LOADING DATA</div>
+                ) : product ? (
                     <div className={styles['description']}>
                         <ImageSlider
                             productImages={product.gallery}
@@ -66,6 +70,8 @@ class ProductDescription extends Component {
                             className={styles['description-details']}
                         />
                     </div>
+                ) : (
+                    <ItemNotFound item={'product'} />
                 )}
             </>
         );

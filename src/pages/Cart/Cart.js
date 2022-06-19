@@ -4,8 +4,7 @@ import PropTypes, { instanceOf } from 'prop-types';
 import CartItem from '../../components/CartItem/CartItem';
 import BaseButton from '../../components/BaseButton/BaseButton';
 import TotalCost from '../../components/TotalCost/TotalCost';
-import { showSuccessOrder } from '../../views/modals/modalActions';
-import { closeModalWindow } from '../../views/modals/modalActions';
+import { showSuccessOrder, closeModalWindow } from '../../views/modals/modalActions';
 import withStorage from '../../helpers/withStorage';
 import withRouter from '../../helpers/withRouter';
 
@@ -28,34 +27,35 @@ class Cart extends Component {
                                     closeModalWindow();
                                 }}
                                 secondary
-                                className={styles['cart__btn']}
                             >
                                 back to catalog
                             </BaseButton>
                         )}
                     </div>
 
-                    <div className={styles['cart__list']}>
-                        {productsInCart?.map((product) => (
-                            <CartItem product={product} key={product.id} cart />
-                        ))}
-                    </div>
-                    {!isCartEmpty && (
-                        <div className={styles['cart__total-wrapper']}>
-                            <div className={styles['cart__total']}>
-                                <TotalCost taxRate={21} />
-                            </div>
-                            <div className={styles['cart__btn-wrapper']}>
-                                <BaseButton
-                                    className={styles['cart__btn']}
-                                    onClick={showSuccessOrder}
-                                    full
-                                >
-                                    order
-                                </BaseButton>
-                            </div>
+                    <div className={styles['cart__content']}>
+                        <div>
+                            {productsInCart?.map((product) => (
+                                <CartItem product={product} key={product.id} cart />
+                            ))}
                         </div>
-                    )}
+
+                        {!isCartEmpty && (
+                            <div className={styles['cart__total-wrapper']}>
+                                <TotalCost taxRate={21} />
+
+                                <div className={styles['cart__btn-wrapper']}>
+                                    <BaseButton
+                                        className={styles['cart__btn']}
+                                        onClick={showSuccessOrder}
+                                        full
+                                    >
+                                        order
+                                    </BaseButton>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </>
         );
