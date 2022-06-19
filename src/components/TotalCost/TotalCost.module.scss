@@ -1,0 +1,18 @@
+.total {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: var(--font-raleway);
+    font-weight: 700;
+    line-height: 28px;
+
+    &-info {
+        font-weight: 400;
+        width: 110px;
+        font-size: 1.5rem;
+
+        &-wrapper {
+            display: flex;
+        }
+    }
+}

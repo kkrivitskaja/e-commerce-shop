@@ -111,7 +111,7 @@ export const setProductAmount = (cartProduct, newAmount) => {
     const index = tempCartProduct.findIndex((item) => item.id === cartProduct.id);
 
     if (index === -1) {
-        throw new Error('There is no product in the cart');
+        throw new Error('There is no product in the cart!');
     }
     if (newAmount === 0) {
         const deleteProduct = () => {
@@ -152,7 +152,7 @@ export const removeProduct = (cartProduct) => {
         };
         dataToModal(ConfirmDelete)(tempCartProduct[index], deleteProduct, message);
     } else {
-        throw new Error('There is no product in the cart');
+        throw new Error('There is no product in the cart!');
     }
 };
 
@@ -176,4 +176,22 @@ export const getProductCost = (prices, currency, amount = 1) => {
     }
 
     return `${productCost.currency.symbol} ${price.toFixed(2)}`;
+};
+
+export const getTaxAmount = (productsInCart, currentCurrency, taxRate) => {
+    const costNoTax = costCalculation(productsInCart, currentCurrency).toFixed(2);
+    const taxAmount = costNoTax * (taxRate / 100);
+    return taxAmount.toFixed(2);
+};
+
+export const getTotalWithTax = (productsInCart, currentCurrency, taxRate) => {
+    const sumNoTax = +costCalculation(productsInCart, currentCurrency).toFixed(2);
+    const sumTax = +getTaxAmount(productsInCart, currentCurrency, taxRate);
+    return sumNoTax + sumTax;
+};
+
+export const getItemsTotalQuantity = (productsInCart) => {
+    return productsInCart.reduce((total, product) => {
+        return total + product.amount;
+    }, 0);
 };
