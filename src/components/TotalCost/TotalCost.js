@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes, { instanceOf } from 'prop-types';
+import classnames from 'classnames';
 
 import withStorage from '../../helpers/withStorage';
 import { getTaxAmount, getTotalWithTax, getItemsTotalQuantity } from '../../views/cart/cartActions';
@@ -9,22 +10,37 @@ import styles from './TotalCost.module.scss';
 class TotalCost extends Component {
     render() {
         const { productsInCart, currentCurrency } = this.props.storageVar;
-        const { taxRate } = this.props;
+        const { taxRate, overlay } = this.props;
 
         return (
             <>
                 <div className={styles['total']}>
-                    <div className={styles['total-info-wrapper']}>
-                        <div className={styles['total-info']}>Tax {taxRate}%: </div>
-                        {currentCurrency.symbol}
-                        {getTaxAmount(productsInCart, currentCurrency, taxRate)}
-                    </div>
-                    <div className={styles['total-info-wrapper']}>
-                        <div className={styles['total-info']}>Quantity: </div>
-                        {getItemsTotalQuantity(productsInCart)}
-                    </div>
-                    <div className={styles['total-info-wrapper']}>
-                        <div className={styles['total-info']}>Total: </div>
+                    {!overlay && (
+                        <>
+                            <div className={styles['total-info-wrapper']}>
+                                <div className={styles['total-info']}>Tax {taxRate}%: </div>
+                                {currentCurrency.symbol}
+                                {getTaxAmount(productsInCart, currentCurrency, taxRate)}
+                            </div>
+                            <div className={styles['total-info-wrapper']}>
+                                <div className={styles['total-info']}>Quantity: </div>
+                                {getItemsTotalQuantity(productsInCart)}
+                            </div>
+                        </>
+                    )}
+
+                    <div
+                        className={classnames(styles['total-info-wrapper'], {
+                            [styles['total-info-wrapper--overlay']]: overlay,
+                        })}
+                    >
+                        <div
+                            className={classnames(styles['total-info'], {
+                                [styles['total-info--overlay']]: overlay,
+                            })}
+                        >
+                            Total:
+                        </div>
                         {currentCurrency.symbol}
                         {getTotalWithTax(productsInCart, currentCurrency, taxRate)}
                     </div>
