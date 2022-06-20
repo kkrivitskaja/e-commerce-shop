@@ -1,14 +1,11 @@
 .list-container {
-    max-width: 1440px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    margin: 10rem 6.25rem 11.9rem 6.25rem;
     row-gap: 6.25rem;
 }
 
 .list {
-    font-family: 'Raleway';
+    font-family: var(--font-raleway);
     font-style: normal;
     font-weight: 400;
     font-size: 2.63rem;
@@ -19,7 +16,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 6.25rem 2.5rem;
-        background-color: #FFFFFF;
+        background-color: var(--background-white);
         justify-content: center;
     }
 }
@@ -27,8 +24,6 @@
 @media (max-width:576px) {
     .list-container {
         width: 100%;
-        margin: 10rem 0rem 11.9rem 0rem;
-
     }
 
     .list {

@@ -3,6 +3,7 @@ import { Component } from 'react';
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
 import ProductDetails from '../../components/ProductDetails/ProductDetails';
 import ItemNotFound from '../../components/ItemNotFound/ItemNotFound';
+import PDLoading from './PDLoading/PDLoading';
 import { GET_PRODUCT_BY_ID } from '../../graphql/Queries';
 import withRouter from '../../helpers/withRouter';
 import withApolloClient from '../../helpers/withApolloClient';
@@ -54,11 +55,11 @@ class ProductDescription extends Component {
 
     render() {
         const { product, loading } = this.state;
-       
+
         return (
             <>
                 {loading ? (
-                    <div>LOADING DATA</div>
+                    <PDLoading />
                 ) : product ? (
                     <div className={styles['description']}>
                         <ImageSlider
