@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Outlet } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import NavBar from '../NavBar/NavBar';
-import ShopCart from '../ShopCart/ShopCart';
+import CartOverlay from '../CartOverlay/CartOverlay';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 import { GET_CATEGORY_AND_CURRENCY } from '../../graphql/Queries';
 import CurrencySwitcher from '../CurrencySwitcher/CurrencySwitcher';
 import withApolloClient from '../../helpers/withApolloClient';
+
+import CommonHeaderLoading from './CommonHeaderLoading/CommonHeaderLoading';
 
 import styles from './PagesCommonHeader.module.scss';
 class PagesCommonHeader extends Component {
@@ -15,6 +16,7 @@ class PagesCommonHeader extends Component {
         categories: null,
         currencies: null,
         loading: true,
+        error: null,
     };
 
     getCategories = async () => {
@@ -34,21 +36,24 @@ class PagesCommonHeader extends Component {
     }
 
     render() {
-        const { categories, currencies } = this.state;
+        const { categories, currencies, loading } = this.state;
+
         return (
             <>
-                {categories && currencies && (
+                {loading ? (
+                    <CommonHeaderLoading />
+                ) : categories && currencies ? (
                     <header className={styles['header']}>
-                        <NavBar category={categories} className="nav" />
+                        <NavBar category={categories} />
                         <div className={styles['header-logo']}>
                             <Logo />
                         </div>
                         <div className={styles['header-actions']}>
                             <CurrencySwitcher currencies={currencies} />
-                            <ShopCart />
+                            <CartOverlay />
                         </div>
                     </header>
-                )}
+                ) : null}
 
                 <main>
                     <Outlet />
@@ -57,9 +62,5 @@ class PagesCommonHeader extends Component {
         );
     }
 }
-
-PagesCommonHeader.propTypes = {
-    categories: PropTypes.arrayOf(PropTypes.string),
-};
 
 export default withApolloClient(PagesCommonHeader);
