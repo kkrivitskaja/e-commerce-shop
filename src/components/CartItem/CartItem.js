@@ -46,15 +46,15 @@ class CartItem extends Component {
                         className={classNames(styles['item-info'], {
                             [styles['item-info--overlay']]: overlay,
                         })}
-                        onClick={() => {
-                            this.props.navigate(product.productUrl);
-                            closeDropdownList();
-                        }}
                     >
                         <div
                             className={classNames(styles['item-brand'], {
                                 [styles['item-brand--overlay']]: overlay,
                             })}
+                            onClick={() => {
+                                this.props.navigate(product.productUrl);
+                                closeDropdownList();
+                            }}
                         >
                             {product.brand}
                         </div>
@@ -62,6 +62,10 @@ class CartItem extends Component {
                             className={classNames(styles['item-name'], {
                                 [styles['item-name--overlay']]: overlay,
                             })}
+                            onClick={() => {
+                                this.props.navigate(product.productUrl);
+                                closeDropdownList();
+                            }}
                         >
                             {product.name}
                         </div>
