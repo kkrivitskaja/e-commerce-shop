@@ -71,7 +71,9 @@ class ProductDetails extends Component {
                         {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
                     </BaseButton>
 
-                    {parseHTML(description, styles['product-info__description'])}
+                    <div className={styles['product-info__description']}>
+                        {parseHTML(description)}
+                    </div>
                 </div>
             </>
         );

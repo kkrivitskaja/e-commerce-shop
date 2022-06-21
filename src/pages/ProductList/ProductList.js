@@ -50,7 +50,7 @@ class ProductList extends Component {
     render() {
         const { categoryId } = this.props.params;
         const { products, loading } = this.state;
-
+        
         return (
             <>
                 {loading ? (
@@ -78,7 +78,6 @@ class ProductList extends Component {
         );
     }
 }
-
 ProductList.propTypes = {
     categoryId: PropTypes.string,
 };
