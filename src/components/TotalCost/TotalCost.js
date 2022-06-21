@@ -52,6 +52,7 @@ class TotalCost extends Component {
 
 TotalCost.propTypes = {
     taxRate: PropTypes.number,
+    overlay: PropTypes.bool,
     productsInCart: PropTypes.arrayOf(
         PropTypes.shape({
             amount: PropTypes.number,
