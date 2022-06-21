@@ -1,7 +1,18 @@
 .message {
-    max-width: 1440px;
-    margin: 0 auto;
-    width: 86.2%;
-    margin: 10rem 6.25rem 4.19rem 6.25rem;
-    text-align: center
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.modal-btn {
+    text-transform: uppercase;
+    width: 250px;
+
+    @media (max-width:576px) {
+        & {
+            width: 100%;
+        }
+    }
 }

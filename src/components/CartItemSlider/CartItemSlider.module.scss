@@ -1,0 +1,49 @@
+.slider {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+
+    &-btn {
+        width: 24px;
+        height: 24px;
+        background-color: var(--background-light-black);
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        bottom: 16px;
+    }
+
+    & button:first-child {
+        left: 64%;
+
+        @media (max-width:768px) {
+            & {
+                left: 45%;
+                transition: all 0.5s ease;
+            }
+        }
+    }
+
+    & button:last-child {
+        right: 8%;
+    }
+
+    &--overlay button:first-child {
+        left: 45%;
+    }
+
+    &-btn svg {
+        stroke: var(--background-white);
+
+        &:hover {
+            stroke: var(--background-green);
+        }
+    }
+
+    &-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}

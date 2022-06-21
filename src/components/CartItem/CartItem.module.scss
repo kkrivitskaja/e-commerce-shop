@@ -1,0 +1,116 @@
+.item {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--underline-light-gray);
+    border-bottom: 1px solid var(--underline-light-gray);
+    display: flex;
+    justify-content: space-between;
+
+    &--overlay {
+        padding: 0rem 0;
+        border: none;
+        gap:0.4rem;
+    }
+
+    &-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        font-family: var(--font-raleway);
+        font-style: normal;
+        line-height: 27px;
+
+        &--overlay {
+            gap: 0.5rem;
+        }
+    }
+
+    &-brand {
+        font-weight: 600;
+        font-size: 1.875rem;
+        cursor: pointer;
+    }
+
+    &-name {
+        font-weight: 400;
+        font-size: 1.875rem;
+        cursor: pointer;
+    }
+
+    @media (max-width:768px) {
+
+        &-brand,
+        &-name {
+            font-size: 1.25rem;
+            line-height: 160%;
+            transition: all 0.5s ease;
+        }
+    }
+
+    &-brand--overlay,
+    &-name--overlay {
+        font-weight: 300;
+        font-size: 1rem;
+        line-height: 160%;
+    }
+
+    &-attributes {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &-details {
+        display: flex;
+        gap: 1.25rem;
+
+        &--overlay {
+            gap: 0.5rem;
+        }
+
+        @media (max-width:576px) {
+            & {
+                gap: 5px;
+                transition: all 0.5s ease;
+            }
+        }
+
+        &-slider-wrapper {
+            width: 200px;
+            height: 290px;
+            user-select: none;
+
+            &--overlay {
+                width: 120px;
+                height: 190px;
+            }
+
+            @media (max-width:768px) {
+                & {
+                    width: 120px;
+                    height: 190px;
+                    transition: all 0.5s ease;
+                }
+            }
+        }
+
+        &-btn {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            border: none;
+            background-color: transparent;
+
+            @media (max-width:576px) {
+                & {
+                    position: relative;
+                    top: -15px;
+                    transition: all 0.5s ease;
+
+                    &--overlay {
+                        top: 0;
+                    }
+                }
+            }
+        }
+    }
+}

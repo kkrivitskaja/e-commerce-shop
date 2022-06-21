@@ -1,14 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway&family=Roboto+Condensed:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100&family=Source+Sans+Pro&display=swap');
-
 .card {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
     padding: 1rem;
     width: 100%;
-    max-width: 386px;
-    height: 440px;
-    background-color: rgb(255, 255, 255);
+    max-width: 385px;
+    height: 445px;
+    background-color: var(--background-white);
     cursor: pointer;
 
     &--disabled {
@@ -16,7 +14,11 @@
     }
 
     &:hover {
-        filter: drop-shadow(0px 4px 35px rgba(168, 172, 176, 0.19));
+        filter: var(--shadow-drop);
+
+        & .card-info__buy--active {
+            display: block;
+        }
     }
 
     &-image-wrapper {
@@ -32,12 +34,11 @@
 
     &-image__stock {
         position: absolute;
-        width: 100%;
         top: 50%;
         left: 25%;
-        color: rgba(141, 143, 154, 1);
+        color: var(--font-color-disabled);
         text-transform: uppercase;
-        font-family: 'Raleway';
+        font-family: var(--font-raleway);
         font-style: normal;
         font-weight: 400;
         font-size: 1.5rem;
@@ -52,33 +53,25 @@
         &__buy {
             position: absolute;
             display: none;
-            right: 10px;
+            right: 15px;
             bottom: 56px;
             width: 52px;
             height: 52px;
 
             &:hover {
-                filter: drop-shadow(0px 4px 11px rgba(29, 31, 34, 0.1));
-            }
-
-            &--active {
-                display: block;
+                filter: var(--shadow-button);
             }
         }
 
-        &__name,
-        &__price {
+        &__name {
             display: flex;
             width: 100%;
-            font-family: 'Raleway';
+            font-family: var(--font-raleway);
             font-style: normal;
             font-weight: 300;
             font-size: 1.125rem;
             line-height: 160%;
         }
 
-        &__price {
-            font-weight: 500;
-        }
     }
 }

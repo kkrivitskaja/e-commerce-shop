@@ -1,0 +1,9 @@
+html {
+    overflow-y: scroll
+}
+
+body .scroll {
+    height: 100vh;
+    overflow-y: hidden;
+    transition: all 0.5s ease;
+}

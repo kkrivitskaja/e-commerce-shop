@@ -1,0 +1,50 @@
+.plp {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6.25rem;
+
+    &-title {
+        max-width: 300px;
+        height: 70px;
+    }
+
+    &-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6.25rem 2.5rem;
+        justify-content: center;
+    }
+
+    &-card {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1rem;
+        width: 100%;
+        max-width: 385px;
+        height: 445px;
+
+        &__img {
+            height: 330px;
+        }
+
+        &__context {
+            height: 60px;
+        }
+    }
+}
+
+.animation {
+    opacity: .7;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: var(--loading--dark-gray);
+    }
+
+    100% {
+        background-color: var(--loading--light-gray);
+    }
+}

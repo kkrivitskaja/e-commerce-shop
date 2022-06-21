@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# Shop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The online Shop was built using React class components, Apollo Client, and React Router according to the [design](https://www.figma.com/file/MSyCAqVy1UgNap0pvqH6H3/Junior-Frontend-Test-Designs-Public?node-id=0%3A1)
 
-## Available Scripts
+The Shop includes:
+- PLP - product listing page, a.k.a. category page
+- PDP - product description page, a.k.a. product page
+- Cart page + Cart overlay (minicart)
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Users can add/remove products and change their amounts in the cart - on the cart page itself, PLP, and PDP. For products that have different options (attributes), the user can add them to the cart only if all attributes are selected. Products that don't have any attributes (like AirTag) can be added to the cart directly from PLP.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The selected attributes of added-to-cart products are visible in the cart overlay and in the cart page. Swatch attribute (type = swatch) is represented like the color itself (not "blue" or "0000FF"). 
 
-### `npm test`
+Products were filtered by category name for all of the categories from BE.
+The descriptions provided in HTML format are parsed and presented as HTML, not as plain text.
+Users can change the currency of the store to one of the available currencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For better user experience I created loading sceletons, modal windows for accepting user actions, and some of the edge cases (a category not found, product not found, 404 page). In addition, the Shop is responsive and I implemented it based on the desktop first approach.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+GraphQL endpoint [here](https://github.com/scandiweb/junior-react-endpoint)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Used: React, Apollo Client, React Router

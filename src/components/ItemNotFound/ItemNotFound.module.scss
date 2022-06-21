@@ -1,0 +1,31 @@
+.message {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+    text-align: center;
+    font-family: var(--font-raleway);
+    font-weight: 400;
+    line-height: 160%;
+
+    &-text {
+        font-size: 1.5rem;
+
+        &--result {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 160%;
+        }
+    }
+
+    &-btn {
+        text-transform: uppercase;
+        width: 300px;
+
+        @media (max-width:576px) {
+            & {
+                width: 100%;
+            }
+        }
+    }
+}

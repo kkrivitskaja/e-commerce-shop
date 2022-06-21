@@ -1,0 +1,21 @@
+.modal {
+  position: fixed;
+  margin-top: 1.25rem;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  background-color: var(--background-white);
+  filter: var(--shadow-drop);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: default;
+
+  &--dark {
+    background-color: var(--background-gray);
+  }
+}

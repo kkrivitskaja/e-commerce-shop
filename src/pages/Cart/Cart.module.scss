@@ -1,0 +1,41 @@
+.cart {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3.75rem;
+
+    &__title-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        max-width: 300px;
+    }
+
+    &__title {
+        font-family: var(--font-raleway);
+        font-style: normal;
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: 125%;
+        text-transform: uppercase;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__total-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__btn-wrapper {
+        width: 280px;
+    }
+
+    &__btn {
+        text-transform: uppercase;
+    }
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import { ReactComponent as Menu } from '../../assets/menu-icon.svg';
@@ -39,10 +40,14 @@ class NavBar extends Component {
     }
 
     render() {
-        const categories = this.props.category;
+        const { category } = this.props;
+
         return (
             <>
                 <div className={styles['nav']}>
+                    {this.state.click && (
+                        <div className={styles['nav-overlay']} onClick={this.toggle}></div>
+                    )}
                     <div className={styles['nav-icon']} onClick={this.toggle}>
                         {this.state.click ? <Close /> : <Menu />}
                     </div>
@@ -54,10 +59,10 @@ class NavBar extends Component {
                         }
                         onClick={this.closeMobileMenu}
                     >
-                        {categories.map((category) => (
+                        {category?.map((item) => (
                             <NavLink
-                                to={`/catalog/${category.name}`}
-                                key={category.name}
+                                to={`/catalog/${item.name}`}
+                                key={item.name}
                                 className={({ isActive }) =>
                                     classnames(styles['nav-link'], {
                                         [styles['nav-link--active']]: isActive,
@@ -65,7 +70,7 @@ class NavBar extends Component {
                                 }
                                 onClick={this.closeMobileMenu}
                             >
-                                {category.name}
+                                {item.name}
                             </NavLink>
                         ))}
                     </div>
@@ -74,5 +79,13 @@ class NavBar extends Component {
         );
     }
 }
+
+NavBar.propTypes = {
+    category: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string,
+        })
+    ),
+};
 
 export default NavBar;

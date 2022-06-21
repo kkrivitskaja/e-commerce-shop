@@ -1,7 +1,7 @@
-import { gql } from 'apollo-boost';
+import { gql } from '@apollo/client';
 
 export const GET_CATEGORY = gql`
-    {
+    query {
         categories {
             name
         }
@@ -9,7 +9,7 @@ export const GET_CATEGORY = gql`
 `;
 
 export const GET_CATEGORY_AND_CURRENCY = gql`
-    {
+    query {
         categories {
             name
         }
@@ -29,6 +29,16 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
                 id
                 inStock
                 gallery
+                attributes {
+                    name
+                    id
+                    type
+                    items {
+                        displayValue
+                        value
+                        id
+                    }
+                }
                 brand
                 prices {
                     currency {

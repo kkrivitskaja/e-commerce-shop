@@ -1,13 +1,18 @@
 import { makeVar } from '@apollo/client';
 
-import { getLocalStorageCurrency } from './Storage';
+import { getLocalStorageCurrency } from './storageActions';
+import { getLocalStorageCart } from './storageActions';
 
 const initialState = {
-    currentCurrency: getLocalStorageCurrency||
-        {
-            label: 'USD',
-            symbol: '$',
-        },
+    currentCurrency: getLocalStorageCurrency || {
+        label: 'USD',
+        symbol: '$',
+    },
+    productsInCart: getLocalStorageCart || [],
+    isModalWindow: false,
+    modalMessage: null,
+    isCurrencyDropdown: false,
+    isCartOverlay: false,
 };
 
 const storage = makeVar(initialState);
