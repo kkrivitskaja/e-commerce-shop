@@ -66,7 +66,6 @@ TotalCost.propTypes = {
     productsInCart: PropTypes.arrayOf(
         PropTypes.shape({
             amount: PropTypes.number,
-
             attributes: PropTypes.arrayOf(
                 PropTypes.shape({
                     id: PropTypes.string,

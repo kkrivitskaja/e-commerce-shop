@@ -187,7 +187,9 @@ export const getTaxAmount = (productsInCart, currentCurrency, taxRate) => {
 export const getTotalWithTax = (productsInCart, currentCurrency, taxRate) => {
     const sumNoTax = +costCalculation(productsInCart, currentCurrency).toFixed(2);
     const sumTax = +getTaxAmount(productsInCart, currentCurrency, taxRate);
-    return sumNoTax + sumTax;
+    const total = (sumNoTax + sumTax).toFixed(2);
+
+    return total;
 };
 
 export const getItemsTotalQuantity = (productsInCart) => {
