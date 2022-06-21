@@ -43,14 +43,16 @@ class PagesCommonHeader extends Component {
                 {loading ? (
                     <CommonHeaderLoading />
                 ) : categories && currencies ? (
-                    <header className={styles['header']}>
-                        <NavBar category={categories} />
-                        <div className={styles['header-logo']}>
-                            <Logo />
-                        </div>
-                        <div className={styles['header-actions']}>
-                            <CurrencySwitcher currencies={currencies} />
-                            <CartOverlay />
+                    <header className={styles['header-wrapper']}>
+                        <div className={styles['header']}>
+                            <NavBar category={categories} />
+                            <div className={styles['header-logo']}>
+                                <Logo />
+                            </div>
+                            <div className={styles['header-actions']}>
+                                <CurrencySwitcher currencies={currencies} />
+                                <CartOverlay />
+                            </div>
                         </div>
                     </header>
                 ) : null}

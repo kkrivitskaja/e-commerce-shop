@@ -1,5 +1,12 @@
+.header-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .header {
     display: grid;
+    max-width: 1440px;
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr;
     height: 80px;
