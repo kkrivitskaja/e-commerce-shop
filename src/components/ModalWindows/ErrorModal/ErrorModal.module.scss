@@ -1,0 +1,31 @@
+.modal__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+
+    &-title {
+        font-size: 1.25rem;
+        text-align: center;
+        font-weight: 500;
+        line-height: 200%;
+    }
+
+    &-name {
+        text-transform: uppercase;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+}
+
+.modal-btn {
+    text-transform: uppercase;
+    width: 300px;
+    margin: 0 auto;
+
+    @media (max-width:576px) {
+        & {
+            width: 100%;
+        }
+    }
+}

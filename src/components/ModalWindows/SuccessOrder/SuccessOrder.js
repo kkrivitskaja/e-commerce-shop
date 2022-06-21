@@ -12,7 +12,7 @@ class SuccessOrder extends Component {
                 <div className={styles['modal']}>
                     <div className={styles['modal__text']}>
                         <p className={styles['modal__text-title']}>
-                            Your order has been successfully accepted!
+                            Your will be redirected to the payment page.
                         </p>
                         <p>An email with order details has been sent to your email address. </p>
                     </div>

@@ -29,7 +29,6 @@ class OutOfStock extends Component {
                             closeModalWindow();
                         }}
                         secondary
-                        outlined
                         className={styles['modal-btn']}
                     >
                         back to catalog
