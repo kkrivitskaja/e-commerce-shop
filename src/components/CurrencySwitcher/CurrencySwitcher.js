@@ -66,6 +66,11 @@ CurrencySwitcher.propTypes = {
             symbol: PropTypes.string,
         })
     ),
+    currentCurrency: PropTypes.shape({
+            label: PropTypes.string,
+            symbol: PropTypes.string,
+        }),
+    isCurrencyDropdown: PropTypes.bool,
 };
 
 export default withStorage(CurrencySwitcher);

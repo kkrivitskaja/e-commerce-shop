@@ -6,6 +6,8 @@
     position: relative;
     cursor: pointer;
     user-select: none;
+    font-size: 1.125rem;
+    font-weight: 500;
 }
 
 .currencies-list {
@@ -15,7 +17,7 @@
     position: absolute;
     left: -10px;
     margin-top: 1rem;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--background-white);
     filter: var(--shadow-drop);
     animation-name: appear;
     animation-duration: 0.5s;
