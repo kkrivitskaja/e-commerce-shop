@@ -40,7 +40,8 @@ class NavBar extends Component {
     }
 
     render() {
-        const categories = this.props.category;
+        const { category } = this.props;
+
         return (
             <>
                 <div className={styles['nav']}>
@@ -58,10 +59,10 @@ class NavBar extends Component {
                         }
                         onClick={this.closeMobileMenu}
                     >
-                        {categories?.map((category) => (
+                        {category?.map((item) => (
                             <NavLink
-                                to={`/catalog/${category.name}`}
-                                key={category.name}
+                                to={`/catalog/${item.name}`}
+                                key={item.name}
                                 className={({ isActive }) =>
                                     classnames(styles['nav-link'], {
                                         [styles['nav-link--active']]: isActive,
@@ -69,7 +70,7 @@ class NavBar extends Component {
                                 }
                                 onClick={this.closeMobileMenu}
                             >
-                                {category.name}
+                                {item.name}
                             </NavLink>
                         ))}
                     </div>
@@ -80,7 +81,11 @@ class NavBar extends Component {
 }
 
 NavBar.propTypes = {
-    categories: PropTypes.arrayOf(PropTypes.string),
+    category: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string,
+        })
+    ),
 };
 
 export default NavBar;
