@@ -34,10 +34,10 @@
     }
 
     &-btn svg {
-        stroke: white;
+        stroke: var(--background-white);
 
         &:hover {
-            stroke: rgb(94, 206, 123, 1);
+            stroke: var(--background-green);
         }
     }
 

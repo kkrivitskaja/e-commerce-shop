@@ -62,11 +62,13 @@
     }
 
     &__info {
-        font-size: 16px;
+        font-size: 1rem;
         padding-bottom: 1rem;
         padding: 0 1rem;
         font-family: var(--font-raleway);
         font-weight: 500;
+        position: relative;
+        z-index: 1000;
     }
 
 
