@@ -1,6 +1,6 @@
 # Shop
 
-The online Shop was built using React class components, Apollo Client, and React Router according to the [design](https://www.figma.com/file/MSyCAqVy1UgNap0pvqH6H3/Junior-Frontend-Test-Designs-Public?node-id=0%3A1)
+The online Shop was built using React class components, Apollo Client, and React Router according to the [design](https://www.figma.com/file/hbaskiAyANvQktv0sK9kw8/Shop-pages-design?node-id=0%3A1)
 
 The Shop includes:
 - PLP - product listing page, a.k.a. category page
@@ -20,6 +20,5 @@ Users can change the currency of the store to one of the available currencies
 For better user experience I created loading sceletons, modal windows for accepting user actions, and some of the edge cases (a category not found, product not found, 404 page). In addition, the Shop is responsive and I implemented it based on the desktop first approach.
 
 
-GraphQL endpoint [here](https://github.com/scandiweb/junior-react-endpoint)
 
 Used: React, Apollo Client, React Router
